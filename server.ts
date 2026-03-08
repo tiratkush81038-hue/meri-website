@@ -32,18 +32,16 @@ async function startServer() {
     }
   });
 
-  // AI Image Generation endpoint
+  // AI Image Generation endpoint (Free Model)
   app.post("/api/generate-image", async (req, res) => {
     const { prompt } = req.body;
     try {
       const response = await ai.models.generateContent({
-        model: 'gemini-3.1-flash-image-preview',
+        model: 'gemini-2.5-flash-image', // Free Model
         contents: { parts: [{ text: prompt }] },
-        config: { imageConfig: { aspectRatio: "1:1", imageSize: "1K" } },
       });
       
       let imageUrl = null;
-      // response.candidates[0].content.parts mein image data dhundna
       if (response.candidates && response.candidates[0].content.parts) {
         for (const part of response.candidates[0].content.parts) {
           if (part.inlineData) {
@@ -63,7 +61,7 @@ async function startServer() {
     res.json({ status: "ok", env: process.env.NODE_ENV });
   });
 
-  // Vite middleware for development or fallback
+  // Vite middleware
   if (process.env.NODE_ENV === "development" || !fs.existsSync(path.join(__dirname, "dist"))) {
     if (process.env.NODE_ENV === "development") {
       const vite = await createViteServer({
