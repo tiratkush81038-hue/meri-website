@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { Bot, Image as ImageIcon, Video, Palette, Send, Loader2, User } from 'lucide-react';
+import { Bot, Image as ImageIcon, Video, Palette, Send, Loader2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 // Code block component for Chat
@@ -53,21 +53,8 @@ const ImageGenerator = () => {
   const [prompt, setPrompt] = useState('');
   const [image, setImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [keySelected, setKeySelected] = useState(false);
-
-  // Check if key is selected on mount
-  useState(() => {
-    (async () => {
-      const hasKey = await (window as any).aistudio.hasSelectedApiKey();
-      setKeySelected(hasKey);
-    })();
-  });
 
   const generate = async () => {
-    if (!keySelected) {
-      alert("Please select a paid API key first!");
-      return;
-    }
     setLoading(true);
     try {
       const res = await fetch('/api/generate-image', {
@@ -90,14 +77,7 @@ const ImageGenerator = () => {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h2 className="text-2xl font-bold mb-6">AI Image Generator</h2>
-      
-      {!keySelected && (
-        <button onClick={async () => { await (window as any).aistudio.openSelectKey(); setKeySelected(true); }} className="bg-red-600 text-white px-6 py-3 rounded-xl mb-6 w-full">
-          Select Paid API Key to Start
-        </button>
-      )}
-
+      <h2 className="text-2xl font-bold mb-6">AI Image Generator (Free)</h2>
       <div className="flex gap-2 mb-6">
         <input value={prompt} onChange={(e) => setPrompt(e.target.value)} className="flex-1 bg-zinc-900 p-3 rounded-xl border border-zinc-700" placeholder="Describe your image..." />
         <button onClick={generate} className="bg-emerald-600 px-6 py-3 rounded-xl hover:bg-emerald-500">{loading ? <Loader2 className="animate-spin" /> : 'Generate'}</button>
