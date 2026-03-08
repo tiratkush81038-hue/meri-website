@@ -6,7 +6,6 @@
 <title>MatkaFastResult</title>
 
 <style>
-
 body{
 margin:0;
 font-family:Arial;
@@ -136,6 +135,9 @@ font-weight:bold;
 text-decoration:none;
 }
 
+button{
+cursor:pointer;
+}
 </style>
 
 </head>
@@ -147,7 +149,7 @@ MUMBAI HEAD OFFICE
 </header>
 
 <marquee>
-🔥 SRIDEVI 45 | TIME BAZAR 89 | MILAN DAY 12 | RAJDHANI 34 | KALYAN 77 | MAIN BAZAR 23 🔥
+🔥 SRIDEVI 130 | TIME BAZAR 677 | MILAN DAY 559 | RAJDHANI DAY 690 | KALYAN 150 | MAIN BAZAR 230 🔥
 </marquee>
 
 <section class="banner">
@@ -157,30 +159,18 @@ MUMBAI HEAD OFFICE
 
 </section>
 
-<section class="result">
+<!-- Live Result Section with Auto Update -->
+<section class="result" id="autoResultSection">
 
 <h2 style="color:#ffb200;">LIVE MATKA RESULT</h2>
 
-<table>
-
+<table id="resultTable">
 <tr>
 <th>MARKET</th>
 <th>OPEN</th>
 <th>JODI</th>
 <th>CLOSE</th>
 </tr>
-
-<tr><td>SRIDEVI</td><td>123</td><td>45</td><td>678</td></tr>
-<tr><td>TIME BAZAR</td><td>246</td><td>89</td><td>135</td></tr>
-<tr><td>MILAN DAY</td><td>356</td><td>12</td><td>489</td></tr>
-<tr><td>RAJDHANI</td><td>567</td><td>34</td><td>890</td></tr>
-<tr><td>KALYAN</td><td>234</td><td>77</td><td>901</td></tr>
-<tr><td>SRIDEVI NIGHT</td><td>145</td><td>62</td><td>780</td></tr>
-<tr><td>MILAN NIGHT</td><td>368</td><td>44</td><td>125</td></tr>
-<tr><td>RAJDHANI NIGHT</td><td>789</td><td>91</td><td>340</td></tr>
-<tr><td>KALYAN NIGHT</td><td>159</td><td>55</td><td>753</td></tr>
-<tr><td>MAIN BAZAR</td><td>678</td><td>23</td><td>456</td></tr>
-
 </table>
 
 </section>
@@ -226,9 +216,40 @@ SRIDEVI NIGHT • MILAN NIGHT • RAJDHANI NIGHT • KALYAN NIGHT • MAIN BAZAR
 
 <h2 style="color:#ffb200;">PAY & JOIN GAME</h2>
 
-<img src="https://via.placeholder.com/200" width="200">
+<!-- Online QR Code -->
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&cu=INR">
 
-<p>Paytm / PhonePe / Google Pay</p>
+<p><b>UPI ID:</b> 8839100416@naviaxis</p>
+
+<br>
+
+<!-- Direct Pay Button -->
+<a href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&cu=INR"
+style="background:#ffb200;color:#101820;padding:12px 20px;
+border-radius:6px;font-weight:bold;text-decoration:none;">
+DIRECT PAY
+</a>
+
+<br><br>
+
+<!-- Copy UPI Button -->
+<button onclick="copyUPI()"
+style="background:#25D366;color:white;padding:10px 20px;border:none;border-radius:5px;">
+COPY UPI ID
+</button>
+
+<br><br>
+
+<h3 style="color:#ffb200;">Upload Payment Screenshot</h3>
+
+<input type="file">
+
+<br><br>
+
+<a href="https://wa.me/918839100416"
+style="background:#ffb200;color:#101820;padding:10px 20px;border-radius:5px;text-decoration:none;">
+SEND SCREENSHOT
+</a>
 
 </section>
 
@@ -264,6 +285,53 @@ Official Matka Result Website <br>
 <a class="whatsapp" href="https://wa.me/918839100416">
 24/7 Support
 </a>
+
+<script>
+// Copy UPI Function
+function copyUPI(){
+navigator.clipboard.writeText("8839100416@naviaxis");
+alert("UPI ID copied!");
+}
+
+// Auto Update Result Table
+const matkaResults = [
+  {market:"SRIDEVI", open:130, jodi:42, close:246},
+  {market:"TIME BAZAR", open:677, jodi:0, close:550},
+  {market:"MILAN DAY", open:559, jodi:96, close:899},
+  {market:"RAJDHANI DAY", open:690, jodi:53, close:120},
+  {market:"KALYAN", open:150, jodi:63, close:670},
+  {market:"SRIDEVI NIGHT", open:348, jodi:58, close:468},
+  {market:"MILAN NIGHT", open:225, jodi:95, close:258},
+  {market:"RAJDHANI NIGHT", open:466, jodi:65, close:249},
+  {market:"KALYAN NIGHT", open:158, jodi:44, close:770},
+  {market:"MAIN BAZAR", open:230, jodi:59, close:360}
+];
+
+function updateResultTable(){
+  const table = document.getElementById("resultTable");
+  table.innerHTML = `
+    <tr>
+      <th>MARKET</th>
+      <th>OPEN</th>
+      <th>JODI</th>
+      <th>CLOSE</th>
+    </tr>
+  `;
+  matkaResults.forEach(item=>{
+    const row = table.insertRow();
+    row.insertCell(0).innerText = item.market;
+    row.insertCell(1).innerText = item.open;
+    row.insertCell(2).innerText = item.jodi;
+    row.insertCell(3).innerText = item.close;
+  });
+}
+
+// Initial Load
+updateResultTable();
+// Update every 30 minutes
+setInterval(updateResultTable, 1800000);
+
+</script>
 
 </body>
 </html>
