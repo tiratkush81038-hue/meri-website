@@ -1,6 +1,6 @@
 import express from "express";
 import { createServer as createViteServer } from "vite";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
@@ -12,63 +12,41 @@ async function startServer() {
   const app = express();
   app.use(express.json());
 
-  // Gemini API client
+  // Gemini API client (Server-side, secure)
   const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
-  // Chat/Builder API route
-  app.post("/api/chat", async (req, res) => {
-    const { message, type } = req.body;
+  // AI Builder API route
+  app.post("/api/build", async (req, res) => {
+    const { prompt, type } = req.body;
     try {
       const systemInstruction = type === 'web-app' 
-        ? "You are an expert Web App Builder. Write clean, professional HTML/CSS/JS code."
-        : "You are an expert App Builder. Write clean, professional code for mobile/desktop apps.";
+        ? "You are an expert Web App Builder. Provide complete, clean, and professional HTML/CSS/JS code for the requested website."
+        : "You are an expert App Builder. Provide complete, clean, and professional code for the requested mobile/desktop app.";
         
       const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: message,
+        model: "gemini-3.1-pro-preview", // Best for coding tasks
+        contents: prompt,
         config: { systemInstruction }
       });
 
-      // Agar response.text nahi hai, toh error throw karein
-      if (!response.text) {
-        throw new Error("Model returned no text response (possibly blocked by safety filters)");
-      }
+      if (!response.text) throw new Error("No response from AI");
 
-      res.json({ text: response.text });
+      res.json({ code: response.text });
     } catch (error: any) {
-      console.error("Gemini API Error:", error);
-      res.status(500).json({ error: error.message || "Failed to call Gemini" });
+      console.error("AI Builder Error:", error);
+      res.status(500).json({ error: "Failed to build. Please try again." });
     }
-  });
-
-  app.get("/api/health", (req, res) => {
-    res.json({ status: "ok" });
   });
 
   // Vite middleware
-  if (process.env.NODE_ENV === "development" || !fs.existsSync(path.join(__dirname, "dist"))) {
-    if (process.env.NODE_ENV === "development") {
-      const vite = await createViteServer({
-        server: { middlewareMode: true },
-        appType: "spa",
-      });
-      app.use(vite.middlewares);
-    } else {
-      app.use(express.static(path.join(__dirname, "src")));
-      app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "index.html"));
-      });
-    }
+  if (process.env.NODE_ENV === "development") {
+    const vite = await createViteServer({ server: { middlewareMode: true }, appType: "spa" });
+    app.use(vite.middlewares);
   } else {
     app.use(express.static(path.join(__dirname, "dist")));
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname, "dist", "index.html"));
-    });
+    app.get("*", (req, res) => res.sendFile(path.join(__dirname, "dist", "index.html")));
   }
 
-  app.listen(3000, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:3000`);
-  });
+  app.listen(3000, "0.0.0.0", () => console.log(`Server running on http://localhost:3000`));
 }
-
 startServer();
