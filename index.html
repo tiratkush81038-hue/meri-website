@@ -25,6 +25,9 @@ marquee{background:#ffb200;color:#101820;padding:8px;font-weight:bold;}
 .proofs img{width:200px;margin:10px;border-radius:10px;box-shadow:0 0 10px rgba(255,178,0,0.4);}
 .faq{max-width:800px;margin:auto;text-align:left;}
 .faq div{background:#151515;padding:15px;margin-bottom:10px;border-radius:5px;}
+.reviews-slider{display:flex;overflow:hidden;max-width:100%;margin:auto;gap:15px;}
+.review-item{min-width:250px;background:#151515;border-radius:8px;padding:15px;flex-shrink:0;transition:transform 0.5s ease;}
+.review-item b{color:#ffb200;}
 footer{background:#101820;text-align:center;padding:20px;margin-top:30px;}
 .whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;padding:15px 20px;border-radius:50px;color:white;font-weight:bold;text-decoration:none;box-shadow:0 0 10px #25D366;}
 button{cursor:pointer;padding:10px 20px;border:none;border-radius:5px;background:#ffb200;color:#101820;font-weight:bold;transition:0.3s;}
@@ -32,16 +35,16 @@ button:hover{transform:scale(1.05);}
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;}
 .modal-content{background:#1b1b1b;padding:30px;max-width:400px;margin:100px auto;border-radius:10px;text-align:center;}
 .modal-content input{width:100%;padding:10px;margin:8px 0;background:#111;border:1px solid #333;color:white;border-radius:6px;}
-
 /* MOBILE RESPONSIVE */
 @media (max-width:768px){
-  header, .banner, .section, footer{padding:20px;text-align:center;}
-  .banner h1{font-size:24px;}
-  .banner h2{font-size:18px;}
-  .result th, .result td{font-size:14px;}
-  .paybtn{padding:10px 15px;font-size:14px;}
-  .proofs img{width:120px;margin:5px;}
-  header button{top:8px;right:10px;padding:5px 10px;font-size:14px;}
+header, .banner, .section, footer{padding:20px;text-align:center;}
+.banner h1{font-size:24px;}
+.banner h2{font-size:18px;}
+.result th, .result td{font-size:14px;}
+.paybtn{padding:10px 15px;font-size:14px;}
+.proofs img{width:120px;margin:5px;}
+header button{top:8px;right:10px;padding:5px 10px;font-size:14px;}
+.review-item{min-width:180px;padding:10px;}
 }
 </style>
 </head>
@@ -87,6 +90,23 @@ MUMBAI HEAD OFFICE
 <img src="https://via.placeholder.com/200x300">
 </section>
 
+<section class="section reviews">
+<h2 style="color:#ffb200;">CUSTOMER REVIEWS</h2>
+<div class="reviews-slider" id="reviewsSlider">
+  <div class="review-item"><b>Rahul Sharma</b><br><span style="color:#ffd700;">★★★★★</span><p>Achha game tha, full paisa mile.</p></div>
+  <div class="review-item"><b>Amit Patel</b><br><span style="color:#ffd700;">★★★★★</span><p>Pura loss cover ho gaya aaj to.</p></div>
+  <div class="review-item"><b>Sunita Verma</b><br><span style="color:#ffd700;">★★★★★</span><p>Trustworthy website, Mumbai head office ka game.</p></div>
+  <div class="review-item"><b>Rajesh Kumar</b><br><span style="color:#ffd700;">★★★★★</span><p>Payment easy tha, game turant mila.</p></div>
+  <div class="review-item"><b>Kavita Joshi</b><br><span style="color:#ffd700;">★★★★★</span><p>Advance payment safe tha, full satisfaction.</p></div>
+  <div class="review-item"><b>Vikram Singh</b><br><span style="color:#ffd700;">★★★★★</span><p>Game accurate tha, result 30 min pehle update.</p></div>
+  <div class="review-item"><b>Rina Mehta</b><br><span style="color:#ffd700;">★★★★★</span><p>Direct from Mumbai head office, trusted website.</p></div>
+  <div class="review-item"><b>Deepak Chauhan</b><br><span style="color:#ffd700;">★★★★★</span><p>Customer service 24/7, game mila without hassle.</p></div>
+  <div class="review-item"><b>Priya Sharma</b><br><span style="color:#ffd700;">★★★★★</span><p>Fast payment and reliable results.</p></div>
+  <div class="review-item"><b>Manoj Yadav</b><br><span style="color:#ffd700;">★★★★★</span><p>Game result accurate, satisfied!</p></div>
+  <!-- Add more review-item divs as needed -->
+</div>
+</section>
+
 <section class="section">
 <h2 style="color:#ffb200;">PAY & JOIN GAME</h2>
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR">
@@ -115,27 +135,29 @@ MatkaFastResult • Official Matka Result Website • © 2026 All Rights Reserve
 
 <!-- LOGIN / SIGNUP MODAL -->
 <div id="loginModal" class="modal">
-<div class="modal-content">
-<h2>User Login</h2>
-<input type="text" placeholder="Mobile Number">
-<input type="password" placeholder="Password">
-<button class="paybtn" onclick="login()">Login</button>
-<hr>
-<h3>New User Signup</h3>
-<input type="text" placeholder="Mobile Number">
-<input type="password" placeholder="Create Password">
-<button class="paybtn" onclick="signup()">Signup</button>
-<button onclick="closeLogin()" style="margin-top:10px;">Close</button>
-</div>
+  <div class="modal-content">
+    <h2>User Login</h2>
+    <input type="text" id="loginNumber" placeholder="Mobile Number">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button class="paybtn" onclick="login()">Login</button>
+    <hr>
+    <h3>New User Signup</h3>
+    <input type="text" id="signupName" placeholder="Full Name">
+    <input type="text" id="signupNumber" placeholder="Mobile Number">
+    <input type="text" id="signupOTP" placeholder="OTP">
+    <input type="password" id="signupPassword" placeholder="Create Password">
+    <button class="paybtn" onclick="signup()">Signup</button>
+    <button onclick="closeLogin()" style="margin-top:10px;">Close</button>
+  </div>
 </div>
 
 <!-- SUCCESS MODAL -->
 <div id="successModal" class="modal">
-<div class="modal-content">
-<h2 style="color:#ffb200;">Welcome to MatkaFastResult!</h2>
-<p>Your Customer ID: <span id="cidSuccess"></span></p>
-<button class="paybtn" onclick="closeSuccess()">OK</button>
-</div>
+  <div class="modal-content">
+    <h2 style="color:#ffb200;">Welcome to MatkaFastResult!</h2>
+    <p>Your Customer ID: <span id="cidSuccess"></span></p>
+    <button class="paybtn" onclick="closeSuccess()">OK</button>
+  </div>
 </div>
 
 <p>Your Customer ID: <span id="cid">Not Logged In</span></p>
@@ -171,38 +193,12 @@ setInterval(updateResultTable,1800000);
 // LOGIN / SIGNUP
 function generateCustomerID(){return "CID"+Math.floor(Math.random()*1000000);}
 function login(){
-  let id=generateCustomerID();
-  localStorage.setItem("customerID",id);
-  document.getElementById("cid").innerText=id;
-  document.getElementById("cidSuccess").innerText=id;
-  document.getElementById("loginBtn").style.display="none";
-  document.getElementById("welcomeMsg").innerText="Welcome, "+id;
-  closeLogin();
-  document.getElementById("successModal").style.display="block";
-}
-function signup(){
-  let id=generateCustomerID();
-  localStorage.setItem("customerID",id);
-  document.getElementById("cid").innerText=id;
-  document.getElementById("cidSuccess").innerText=id;
-  document.getElementById("loginBtn").style.display="none";
-  document.getElementById("welcomeMsg").innerText="Welcome, "+id;
-  closeLogin();
-  document.getElementById("successModal").style.display="block";
-}
-function openLogin(){document.getElementById("loginModal").style.display="block";}
-function closeLogin(){document.getElementById("loginModal").style.display="none";}
-function closeSuccess(){document.getElementById("successModal").style.display="none";}
-
-// Maintain login state on reload
-window.onload=function(){
-  let saved=localStorage.getItem("customerID");
-  if(saved){
-    document.getElementById("cid").innerText=saved;
+  let number=document.getElementById("loginNumber").value;
+  let password=document.getElementById("loginPassword").value;
+  if(number && password){
+    let id=generateCustomerID();
+    localStorage.setItem("customerID",id);
+    document.getElementById("cid").innerText=id;
+    document.getElementById("cidSuccess").innerText=id;
     document.getElementById("loginBtn").style.display="none";
-    document.getElementById("welcomeMsg").innerText="Welcome, "+saved;
-  }
-}
-</script>
-</body>
-</html>
+    document.getElementById("welcomeMsg
