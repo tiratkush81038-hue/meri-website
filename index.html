@@ -4,151 +4,54 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MatkaFastResult</title>
-
 <style>
-body{
-margin:0;
-font-family:Arial, sans-serif;
-background:#0f0f0f;
-color:white;
-}
-header{
-background:#101820;
-padding:15px;
-text-align:center;
-font-size:22px;
-color:#ffb200;
-font-weight:bold;
-position:relative;
-}
-marquee{
-background:#ffb200;
-color:#101820;
-padding:8px;
-font-weight:bold;
-}
-.banner{
-text-align:center;
-padding:60px 20px;
-background:linear-gradient(45deg,#151515,#1d1d1d);
-border-bottom:2px solid #ffb200;
-}
+body{margin:0;font-family:Arial, sans-serif;background:#0f0f0f;color:white;}
+header{background:#101820;padding:15px;text-align:center;font-size:22px;color:#ffb200;font-weight:bold;position:relative;}
+header button{position:absolute;right:20px;top:12px;background:#ffb200;color:#101820;border:none;padding:6px 12px;border-radius:5px;font-weight:bold;cursor:pointer;transition:0.3s;}
+header button:hover{background:#ffd24d;}
+marquee{background:#ffb200;color:#101820;padding:8px;font-weight:bold;}
+.banner{text-align:center;padding:60px 20px;background:linear-gradient(45deg,#151515,#1d1d1d);border-bottom:2px solid #ffb200;}
 .banner h1{color:#ffb200;font-size:32px;}
 .banner h2{font-size:20px;}
-.result{
-padding:40px 20px;
-text-align:center;
-}
-.result table{
-width:90%;
-margin:auto;
-border-collapse:collapse;
-background:#151515;
-}
-.result th{
-background:#ffb200;color:#101820;padding:10px;
-}
-.result td{
-padding:10px;
-border-bottom:1px solid #333;
-font-weight:bold;
-color:#ffb200;
-}
-.section{
-padding:40px 20px;
-text-align:center;
-background:#111;
-}
-.box{
-background:#151515;
-border:2px solid #ffb200;
-padding:25px;
-border-radius:10px;
-max-width:600px;
-margin:auto;
-}
+.result{padding:40px 20px;text-align:center;overflow-x:auto;}
+.result table{width:100%;min-width:500px;border-collapse:collapse;background:#151515;}
+.result th{background:#ffb200;color:#101820;padding:10px;}
+.result td{padding:10px;border-bottom:1px solid #333;font-weight:bold;color:#ffb200;}
+.section{padding:40px 20px;text-align:center;background:#111;}
+.box{background:#151515;border:2px solid #ffb200;padding:25px;border-radius:10px;max-width:600px;margin:auto;}
 .box h2{color:#ffb200;}
-.paybtn{
-background:linear-gradient(90deg,#ffb200,#ff7b00);
-color:#101820;
-padding:12px 20px;
-font-weight:bold;
-border-radius:5px;
-display:inline-block;
-margin-top:10px;
-text-decoration:none;
-transition:0.3s;
-}
-.paybtn:hover{
-transform:scale(1.05);
-background:#ffd24d;
-}
-.proofs img{
-width:200px;
-margin:10px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(255,178,0,0.4);
-}
-.faq{
-max-width:800px;
-margin:auto;
-text-align:left;
-}
-.faq div{
-background:#151515;
-padding:15px;
-margin-bottom:10px;
-border-radius:5px;
-}
-footer{
-background:#101820;
-text-align:center;
-padding:20px;
-margin-top:30px;
-}
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-padding:15px 20px;
-border-radius:50px;
-color:white;
-font-weight:bold;
-text-decoration:none;
-box-shadow:0 0 10px #25D366;
-}
+.paybtn{background:linear-gradient(90deg,#ffb200,#ff7b00);color:#101820;padding:12px 20px;font-weight:bold;border-radius:5px;display:inline-block;margin-top:10px;text-decoration:none;transition:0.3s;}
+.paybtn:hover{transform:scale(1.05);background:#ffd24d;}
+.proofs img{width:200px;margin:10px;border-radius:10px;box-shadow:0 0 10px rgba(255,178,0,0.4);}
+.faq{max-width:800px;margin:auto;text-align:left;}
+.faq div{background:#151515;padding:15px;margin-bottom:10px;border-radius:5px;}
+footer{background:#101820;text-align:center;padding:20px;margin-top:30px;}
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;padding:15px 20px;border-radius:50px;color:white;font-weight:bold;text-decoration:none;box-shadow:0 0 10px #25D366;}
 button{cursor:pointer;padding:10px 20px;border:none;border-radius:5px;background:#ffb200;color:#101820;font-weight:bold;transition:0.3s;}
 button:hover{transform:scale(1.05);}
-.modal{
-display:none;
-position:fixed;
-top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,0.8);
-z-index:1000;
-}
-.modal-content{
-background:#1b1b1b;
-padding:30px;
-max-width:400px;
-margin:100px auto;
-border-radius:10px;
-}
-.modal-content input{
-width:100%;
-padding:10px;
-margin:8px 0;
-background:#111;
-border:1px solid #333;
-color:white;
-border-radius:6px;
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:1000;}
+.modal-content{background:#1b1b1b;padding:30px;max-width:400px;margin:100px auto;border-radius:10px;}
+.modal-content input{width:100%;padding:10px;margin:8px 0;background:#111;border:1px solid #333;color:white;border-radius:6px;}
+
+/* MOBILE RESPONSIVE */
+@media (max-width:768px){
+  header, .banner, .section, footer{padding:20px;text-align:center;}
+  .banner h1{font-size:24px;}
+  .banner h2{font-size:18px;}
+  .result th, .result td{font-size:14px;}
+  .paybtn{padding:10px 15px;font-size:14px;}
+  .proofs img{width:120px;margin:5px;}
+  header button{top:8px;right:10px;padding:5px 10px;font-size:14px;}
 }
 </style>
 </head>
-
 <body>
 
-<header>MUMBAI HEAD OFFICE</header>
+<header>
+MUMBAI HEAD OFFICE
+<button onclick="openLogin()">Login / Signup</button>
+</header>
+
 <marquee>🔥 SRIDEVI 130 | TIME BAZAR 677 | MILAN DAY 559 | RAJDHANI DAY 690 | KALYAN 150 | MAIN BAZAR 230 🔥</marquee>
 
 <section class="banner">
@@ -159,12 +62,7 @@ border-radius:6px;
 <section class="result" id="autoResultSection">
 <h2 style="color:#ffb200;">LIVE MATKA RESULT</h2>
 <table id="resultTable">
-<tr>
-<th>MARKET</th>
-<th>OPEN</th>
-<th>JODI</th>
-<th>CLOSE</th>
-</tr>
+<tr><th>MARKET</th><th>OPEN</th><th>JODI</th><th>CLOSE</th></tr>
 </table>
 </section>
 
@@ -177,7 +75,7 @@ border-radius:6px;
 <h3 style="color:#ffb200;">GAMES NAME</h3>
 <p>SRIDEVI • TIME BAZAR • MILAN DAY • RAJDHANI • KALYAN • SRIDEVI NIGHT • MILAN NIGHT • RAJDHANI NIGHT • KALYAN NIGHT • MAIN BAZAR</p>
 <h3 style="color:#ffb200;">ADVANCE ONLY ₹2999</h3>
-<a class="paybtn" href="https://wa.me/918839100416">PAY NOW</a>
+<a class="paybtn" href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR">PAY NOW</a>
 </div>
 </section>
 
@@ -190,11 +88,9 @@ border-radius:6px;
 
 <section class="section">
 <h2 style="color:#ffb200;">PAY & JOIN GAME</h2>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&cu=INR">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR">
 <br><br>
-<a href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&cu=INR" class="paybtn">DIRECT PAY</a>
-<br><br>
-<button onclick="copyUPI()">COPY UPI ID</button>
+<a href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR" class="paybtn">DIRECT PAY</a>
 <br><br>
 <h3 style="color:#ffb200;">Upload Payment Screenshot</h3>
 <input type="file">
@@ -228,18 +124,13 @@ MatkaFastResult • Official Matka Result Website • © 2026 All Rights Reserve
 <input type="text" placeholder="Mobile Number">
 <input type="password" placeholder="Create Password">
 <button class="paybtn" onclick="signup()">Signup</button>
+<button onclick="closeLogin()" style="margin-top:10px;">Close</button>
 </div>
 </div>
 
 <p>Your Customer ID: <span id="cid">Not Logged In</span></p>
 
 <script>
-// COPY UPI
-function copyUPI(){
-navigator.clipboard.writeText("8839100416@naviaxis");
-alert("UPI ID copied!");
-}
-
 // LIVE RESULTS
 const matkaResults = [
 {market:"SRIDEVI", open:130, jodi:42, close:246},
@@ -254,16 +145,14 @@ const matkaResults = [
 {market:"MAIN BAZAR", open:230, jodi:59, close:360}
 ];
 function updateResultTable(){
-const table = document.getElementById("resultTable");
-table.innerHTML = `<tr>
-<th>MARKET</th><th>OPEN</th><th>JODI</th><th>CLOSE</th>
-</tr>`;
+const table=document.getElementById("resultTable");
+table.innerHTML=`<tr><th>MARKET</th><th>OPEN</th><th>JODI</th><th>CLOSE</th></tr>`;
 matkaResults.forEach(item=>{
-const row = table.insertRow();
-row.insertCell(0).innerText = item.market;
-row.insertCell(1).innerText = item.open;
-row.insertCell(2).innerText = item.jodi;
-row.insertCell(3).innerText = item.close;
+const row=table.insertRow();
+row.insertCell(0).innerText=item.market;
+row.insertCell(1).innerText=item.open;
+row.insertCell(2).innerText=item.jodi;
+row.insertCell(3).innerText=item.close;
 });
 }
 updateResultTable();
@@ -275,11 +164,7 @@ function login(){let id=generateCustomerID();localStorage.setItem("customerID",i
 function signup(){let id=generateCustomerID();localStorage.setItem("customerID",id);document.getElementById("cid").innerText=id;alert("Account Created");closeLogin();}
 function openLogin(){document.getElementById("loginModal").style.display="block";}
 function closeLogin(){document.getElementById("loginModal").style.display="none";}
-window.onload=function(){
-let saved=localStorage.getItem("customerID");
-if(saved){document.getElementById("cid").innerText=saved;}
-}
-
+window.onload=function(){let saved=localStorage.getItem("customerID");if(saved){document.getElementById("cid").innerText=saved;}}
 </script>
 </body>
 </html>
