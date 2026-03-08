@@ -12,8 +12,6 @@ font-family:Arial, sans-serif;
 background:#0f0f0f;
 color:white;
 }
-
-/* HEADER */
 header{
 background:#101820;
 padding:15px;
@@ -23,16 +21,12 @@ color:#ffb200;
 font-weight:bold;
 position:relative;
 }
-
-/* SCROLLING TICKER */
 marquee{
 background:#ffb200;
 color:#101820;
 padding:8px;
 font-weight:bold;
 }
-
-/* BANNER */
 .banner{
 text-align:center;
 padding:60px 20px;
@@ -41,8 +35,6 @@ border-bottom:2px solid #ffb200;
 }
 .banner h1{color:#ffb200;font-size:32px;}
 .banner h2{font-size:20px;}
-
-/* RESULTS */
 .result{
 padding:40px 20px;
 text-align:center;
@@ -62,8 +54,6 @@ border-bottom:1px solid #333;
 font-weight:bold;
 color:#ffb200;
 }
-
-/* SECTIONS */
 .section{
 padding:40px 20px;
 text-align:center;
@@ -110,16 +100,12 @@ padding:15px;
 margin-bottom:10px;
 border-radius:5px;
 }
-
-/* FOOTER */
 footer{
 background:#101820;
 text-align:center;
 padding:20px;
 margin-top:30px;
 }
-
-/* WHATSAPP FLOAT */
 .whatsapp{
 position:fixed;
 bottom:20px;
@@ -132,12 +118,8 @@ font-weight:bold;
 text-decoration:none;
 box-shadow:0 0 10px #25D366;
 }
-
-/* BUTTON */
 button{cursor:pointer;padding:10px 20px;border:none;border-radius:5px;background:#ffb200;color:#101820;font-weight:bold;transition:0.3s;}
 button:hover{transform:scale(1.05);}
-
-/* MODAL */
 .modal{
 display:none;
 position:fixed;
@@ -167,7 +149,6 @@ border-radius:6px;
 <body>
 
 <header>MUMBAI HEAD OFFICE</header>
-
 <marquee>🔥 SRIDEVI 130 | TIME BAZAR 677 | MILAN DAY 559 | RAJDHANI DAY 690 | KALYAN 150 | MAIN BAZAR 230 🔥</marquee>
 
 <section class="banner">
@@ -175,7 +156,6 @@ border-radius:6px;
 <h2>DIRECT FROM MUMBAI HEAD OFFICE</h2>
 </section>
 
-<!-- LIVE RESULTS -->
 <section class="result" id="autoResultSection">
 <h2 style="color:#ffb200;">LIVE MATKA RESULT</h2>
 <table id="resultTable">
@@ -188,7 +168,6 @@ border-radius:6px;
 </table>
 </section>
 
-<!-- INFORMATION -->
 <section class="section">
 <p>हमारे सभी सट्टा खेलने वाले भाई परेशान थे लोगो को पैसा देदे कर इस लिए अब मुंबई से सीधा गेम मिलेगा आप सभी को अब किसी फालतू आदमी को पैसा ना दे हमारी वेबसाइट से गेम ले official website</p>
 
@@ -202,7 +181,6 @@ border-radius:6px;
 </div>
 </section>
 
-<!-- WINNING PROOFS -->
 <section class="section proofs">
 <h2 style="color:#ffb200;">WINNING PROOFS</h2>
 <img src="https://via.placeholder.com/200x300">
@@ -210,10 +188,8 @@ border-radius:6px;
 <img src="https://via.placeholder.com/200x300">
 </section>
 
-<!-- PAYMENT SECTION -->
 <section class="section">
 <h2 style="color:#ffb200;">PAY & JOIN GAME</h2>
-<p><b>UPI ID:</b> 8839100416@naviaxis</p>
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&cu=INR">
 <br><br>
 <a href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&cu=INR" class="paybtn">DIRECT PAY</a>
@@ -226,12 +202,12 @@ border-radius:6px;
 <a href="https://wa.me/918839100416" class="paybtn">SEND SCREENSHOT</a>
 </section>
 
-<!-- FAQ -->
 <section class="section faq">
 <h2 style="color:#ffb200;">FAQ</h2>
-<div><b>Game kaise milega?</b><p>Payment karne ke baad WhatsApp par screenshot bheje.</p></div>
-<div><b>Advance payment kyun?</b><p>Company service aur website maintenance ke liye.</p></div>
-<div><b>Result kab milega?</b><p>Result 30 minute pehle update hota hai.</p></div>
+<div>
+<b>Game kaise milega?</b>
+<p>Payment karne ke baad WhatsApp par screenshot bheje game turant WhatsApp par mil jayega.</p>
+</div>
 </section>
 
 <footer>
@@ -294,17 +270,16 @@ updateResultTable();
 setInterval(updateResultTable,1800000);
 
 // LOGIN / SIGNUP
-function openLogin(){document.getElementById("loginModal").style.display="block";}
-function closeLogin(){document.getElementById("loginModal").style.display="none";}
 function generateCustomerID(){return "CID"+Math.floor(Math.random()*1000000);}
 function login(){let id=generateCustomerID();localStorage.setItem("customerID",id);document.getElementById("cid").innerText=id;alert("Login Successful");closeLogin();}
 function signup(){let id=generateCustomerID();localStorage.setItem("customerID",id);document.getElementById("cid").innerText=id;alert("Account Created");closeLogin();}
+function openLogin(){document.getElementById("loginModal").style.display="block";}
+function closeLogin(){document.getElementById("loginModal").style.display="none";}
 window.onload=function(){
 let saved=localStorage.getItem("customerID");
 if(saved){document.getElementById("cid").innerText=saved;}
 }
 
 </script>
-
 </body>
 </html>
