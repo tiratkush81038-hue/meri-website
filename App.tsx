@@ -1,10 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { motion } from 'motion/react';
 import { Send, Bot, User } from 'lucide-react';
-import { GoogleGenAI } from "@google/genai";
-
-// API client initialization
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 export default function App() {
   const [messages, setMessages] = useState<{ role: 'user' | 'ai'; text: string }[]>([
@@ -23,12 +19,16 @@ export default function App() {
     setIsLoading(true);
 
     try {
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: input,
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: input }),
       });
 
-      const aiMessage = { role: 'ai' as const, text: response.text || 'Sorry, main jawab nahi de paya.' };
+      if (!response.ok) throw new Error('Failed to fetch');
+
+      const data = await response.json();
+      const aiMessage = { role: 'ai' as const, text: data.text || 'Sorry, main jawab nahi de paya.' };
       setMessages(prev => [...prev, aiMessage]);
     } catch (error) {
       console.error("Error:", error);
