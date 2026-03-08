@@ -32,7 +32,7 @@ async function startServer() {
     }
   });
 
-  // AI Image Generation endpoint (Free Model)
+  // AI Image Generation endpoint (Free Model with Detailed Logging)
   app.post("/api/generate-image", async (req, res) => {
     const { prompt } = req.body;
     try {
@@ -50,10 +50,16 @@ async function startServer() {
           }
         }
       }
+      
+      if (!imageUrl) {
+        throw new Error("No image data returned from model");
+      }
+      
       res.json({ imageUrl });
-    } catch (error) {
-      console.error("Image Gen Error:", error);
-      res.status(500).json({ error: "Failed to generate image" });
+    } catch (error: any) {
+      // Yahan hum detailed error log kar rahe hain
+      console.error("Detailed Image Gen Error:", error.message || error);
+      res.status(500).json({ error: error.message || "Failed to generate image" });
     }
   });
 
