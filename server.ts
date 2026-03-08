@@ -10,61 +10,39 @@ const __dirname = path.dirname(__filename);
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
-
   app.use(express.json());
 
   // Gemini API client
   const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
-  // API routes
+  // Chat/Builder API route
   app.post("/api/chat", async (req, res) => {
-    const { message } = req.body;
+    const { message, type } = req.body;
     try {
+      const systemInstruction = type === 'web-app' 
+        ? "You are an expert Web App Builder. Write clean, professional HTML/CSS/JS code."
+        : "You are an expert App Builder. Write clean, professional code for mobile/desktop apps.";
+        
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: message,
+        config: { systemInstruction }
       });
-      res.json({ text: response.text });
-    } catch (error) {
-      console.error("Gemini API Error:", error);
-      res.status(500).json({ error: "Failed to call Gemini" });
-    }
-  });
 
-  // AI Image Generation endpoint (Free Model with Detailed Logging)
-  app.post("/api/generate-image", async (req, res) => {
-    const { prompt } = req.body;
-    try {
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash-image', // Free Model
-        contents: { parts: [{ text: prompt }] },
-      });
-      
-      let imageUrl = null;
-      if (response.candidates && response.candidates[0].content.parts) {
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            imageUrl = `data:image/png;base64,${part.inlineData.data}`;
-            break;
-          }
-        }
+      // Agar response.text nahi hai, toh error throw karein
+      if (!response.text) {
+        throw new Error("Model returned no text response (possibly blocked by safety filters)");
       }
-      
-      if (!imageUrl) {
-        throw new Error("No image data returned from model");
-      }
-      
-      res.json({ imageUrl });
+
+      res.json({ text: response.text });
     } catch (error: any) {
-      // Yahan hum detailed error log kar rahe hain
-      console.error("Detailed Image Gen Error:", error.message || error);
-      res.status(500).json({ error: error.message || "Failed to generate image" });
+      console.error("Gemini API Error:", error);
+      res.status(500).json({ error: error.message || "Failed to call Gemini" });
     }
   });
 
   app.get("/api/health", (req, res) => {
-    res.json({ status: "ok", env: process.env.NODE_ENV });
+    res.json({ status: "ok" });
   });
 
   // Vite middleware
@@ -88,8 +66,8 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  app.listen(3000, "0.0.0.0", () => {
+    console.log(`Server running on http://localhost:3000`);
   });
 }
 
