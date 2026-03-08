@@ -3,189 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Premium Game Results</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>MatkaFastResult</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins;
-}
-
 body{
-background:#0a0a0a;
+margin:0;
+font-family:Arial, sans-serif;
+background:#0f0f0f;
 color:white;
 }
 
 /* HEADER */
-
 header{
-background:#111;
+background:#101820;
 padding:15px;
-border-bottom:3px solid #ffb200;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.logo{
-font-size:24px;
-font-weight:700;
+text-align:center;
+font-size:22px;
 color:#ffb200;
+font-weight:bold;
+position:relative;
 }
 
-.login-btn{
+/* SCROLLING TICKER */
+marquee{
 background:#ffb200;
-border:none;
-padding:8px 18px;
-border-radius:6px;
-cursor:pointer;
+color:#101820;
+padding:8px;
 font-weight:bold;
 }
 
-/* TICKER */
-
-.ticker{
-background:#151515;
-padding:8px;
-overflow:hidden;
-white-space:nowrap;
-border-bottom:1px solid #333;
-}
-
-.ticker span{
-display:inline-block;
-padding-left:100%;
-animation:ticker 18s linear infinite;
-}
-
-@keyframes ticker{
-0%{transform:translateX(0)}
-100%{transform:translateX(-100%)}
-}
-
-/* CONTAINER */
-
-.container{
-max-width:1100px;
-margin:auto;
-padding:20px;
-}
-
-/* RESULT GRID */
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
-}
-
-.result-card{
-background:#151515;
-padding:20px;
-border-radius:10px;
-border:1px solid #2a2a2a;
+/* BANNER */
+.banner{
 text-align:center;
+padding:60px 20px;
+background:linear-gradient(45deg,#151515,#1d1d1d);
+border-bottom:2px solid #ffb200;
+}
+.banner h1{color:#ffb200;font-size:32px;}
+.banner h2{font-size:20px;}
+
+/* RESULTS */
+.result{
+padding:40px 20px;
+text-align:center;
+}
+.result table{
+width:90%;
+margin:auto;
+border-collapse:collapse;
+background:#151515;
+}
+.result th{
+background:#ffb200;color:#101820;padding:10px;
+}
+.result td{
+padding:10px;
+border-bottom:1px solid #333;
+font-weight:bold;
+color:#ffb200;
+}
+
+/* SECTIONS */
+.section{
+padding:40px 20px;
+text-align:center;
+background:#111;
+}
+.box{
+background:#151515;
+border:2px solid #ffb200;
+padding:25px;
+border-radius:10px;
+max-width:600px;
+margin:auto;
+}
+.box h2{color:#ffb200;}
+.paybtn{
+background:linear-gradient(90deg,#ffb200,#ff7b00);
+color:#101820;
+padding:12px 20px;
+font-weight:bold;
+border-radius:5px;
+display:inline-block;
+margin-top:10px;
+text-decoration:none;
 transition:0.3s;
 }
-
-.result-card:hover{
-transform:translateY(-5px);
-box-shadow:0 0 15px rgba(255,178,0,0.3);
+.paybtn:hover{
+transform:scale(1.05);
+background:#ffd24d;
 }
-
-.result-card h3{
-color:#ffb200;
-margin-bottom:6px;
+.proofs img{
+width:200px;
+margin:10px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(255,178,0,0.4);
 }
-
-.result-number{
-font-size:22px;
-font-weight:700;
+.faq{
+max-width:800px;
+margin:auto;
+text-align:left;
 }
-
-/* TABLE */
-
-.card{
+.faq div{
 background:#151515;
-border-radius:10px;
-padding:20px;
-margin-top:20px;
-border:1px solid #2a2a2a;
-}
-
-.card h2{
-color:#ffb200;
+padding:15px;
 margin-bottom:10px;
+border-radius:5px;
 }
 
-table{
-width:100%;
-border-collapse:collapse;
-}
-
-th{
-background:#222;
-color:#ffb200;
-}
-
-th,td{
-padding:10px;
+/* FOOTER */
+footer{
+background:#101820;
 text-align:center;
-border-bottom:1px solid #333;
-}
-
-/* PAYMENT */
-
-.pay-box{
-text-align:center;
-}
-
-.pay-btn{
-background:#ffb200;
-border:none;
-padding:12px 25px;
-border-radius:6px;
-font-weight:bold;
-cursor:pointer;
-margin-top:10px;
-}
-
-/* UPLOAD */
-
-.upload{
-border:2px dashed #444;
 padding:20px;
-text-align:center;
-border-radius:10px;
+margin-top:30px;
 }
+
+/* WHATSAPP FLOAT */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+padding:15px 20px;
+border-radius:50px;
+color:white;
+font-weight:bold;
+text-decoration:none;
+box-shadow:0 0 10px #25D366;
+}
+
+/* BUTTON */
+button{cursor:pointer;padding:10px 20px;border:none;border-radius:5px;background:#ffb200;color:#101820;font-weight:bold;transition:0.3s;}
+button:hover{transform:scale(1.05);}
 
 /* MODAL */
-
 .modal{
 display:none;
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+top:0;left:0;width:100%;height:100%;
 background:rgba(0,0,0,0.8);
+z-index:1000;
 }
-
-.modal-box{
+.modal-content{
 background:#1b1b1b;
-padding:25px;
+padding:30px;
 max-width:400px;
-margin:120px auto;
+margin:100px auto;
 border-radius:10px;
 }
-
-.modal-box input{
+.modal-content input{
 width:100%;
 padding:10px;
 margin:8px 0;
@@ -194,183 +161,147 @@ border:1px solid #333;
 color:white;
 border-radius:6px;
 }
-
-/* FOOTER */
-
-footer{
-text-align:center;
-padding:20px;
-color:#888;
-}
-
 </style>
-
 </head>
 
 <body>
 
-<header>
+<header>MUMBAI HEAD OFFICE</header>
 
-<div class="logo">GAME RESULTS</div>
+<marquee>🔥 SRIDEVI 130 | TIME BAZAR 677 | MILAN DAY 559 | RAJDHANI DAY 690 | KALYAN 150 | MAIN BAZAR 230 🔥</marquee>
 
-<button class="login-btn" onclick="openLogin()">Login</button>
+<section class="banner">
+<h1>SATTA MATKA COMPANY</h1>
+<h2>DIRECT FROM MUMBAI HEAD OFFICE</h2>
+</section>
 
-</header>
-
-<div class="ticker">
-<span>Latest Results Updated • Welcome to Official Results Portal • Check Daily Game Results Here</span>
-</div>
-
-<div class="container">
-
-<!-- RESULT CARDS -->
-
-<div class="grid">
-
-<div class="result-card">
-<h3>SRIDEVI</h3>
-<div class="result-number">130‑42‑246</div>
-</div>
-
-<div class="result-card">
-<h3>TIME BAZAR</h3>
-<div class="result-number">677‑00‑550</div>
-</div>
-
-<div class="result-card">
-<h3>MILAN DAY</h3>
-<div class="result-number">559‑96‑899</div>
-</div>
-
-<div class="result-card">
-<h3>RAJDHANI DAY</h3>
-<div class="result-number">690‑53‑120</div>
-</div>
-
-<div class="result-card">
-<h3>KALYAN</h3>
-<div class="result-number">150‑63‑670</div>
-</div>
-
-</div>
-
-<!-- WEEK TABLE -->
-
-<div class="card">
-
-<h2>Weekly Results</h2>
-
-<table>
-
+<!-- LIVE RESULTS -->
+<section class="result" id="autoResultSection">
+<h2 style="color:#ffb200;">LIVE MATKA RESULT</h2>
+<table id="resultTable">
 <tr>
-<th>Date</th>
-<th>Open</th>
-<th>Jodi</th>
-<th>Panna</th>
+<th>MARKET</th>
+<th>OPEN</th>
+<th>JODI</th>
+<th>CLOSE</th>
 </tr>
-
-<tr>
-<td>07‑03‑2026</td>
-<td>6</td>
-<td>63</td>
-<td>150</td>
-</tr>
-
-<tr>
-<td>06‑03‑2026</td>
-<td>5</td>
-<td>56</td>
-<td>140</td>
-</tr>
-
-<tr>
-<td>05‑03‑2026</td>
-<td>9</td>
-<td>90</td>
-<td>234</td>
-</tr>
-
 </table>
+</section>
 
+<!-- INFORMATION -->
+<section class="section">
+<p>हमारे सभी सट्टा खेलने वाले भाई परेशान थे लोगो को पैसा देदे कर इस लिए अब मुंबई से सीधा गेम मिलेगा आप सभी को अब किसी फालतू आदमी को पैसा ना दे हमारी वेबसाइट से गेम ले official website</p>
+
+<div class="box">
+<h2>GAMES</h2>
+<p>SINGLE OPEN • SINGLE JODI • SINGLE PANNL</p>
+<h3 style="color:#ffb200;">GAMES NAME</h3>
+<p>SRIDEVI • TIME BAZAR • MILAN DAY • RAJDHANI • KALYAN • SRIDEVI NIGHT • MILAN NIGHT • RAJDHANI NIGHT • KALYAN NIGHT • MAIN BAZAR</p>
+<h3 style="color:#ffb200;">ADVANCE ONLY ₹2999</h3>
+<a class="paybtn" href="https://wa.me/918839100416">PAY NOW</a>
 </div>
+</section>
 
-<!-- PAYMENT -->
+<!-- WINNING PROOFS -->
+<section class="section proofs">
+<h2 style="color:#ffb200;">WINNING PROOFS</h2>
+<img src="https://via.placeholder.com/200x300">
+<img src="https://via.placeholder.com/200x300">
+<img src="https://via.placeholder.com/200x300">
+</section>
 
-<div class="card pay-box">
-
-<h2>Payment</h2>
-
-<p>Advance Package ₹2999</p>
-
-<img src="upi_qr_8839100416_naviaxis.png" width="200">
-
-<br>
-
-<button class="pay-btn">Pay Now</button>
-
-</div>
-
-<!-- UPLOAD -->
-
-<div class="card">
-
-<h2>Upload Payment Screenshot</h2>
-
-<div class="upload">
-
-<input type="file">
-
+<!-- PAYMENT SECTION -->
+<section class="section">
+<h2 style="color:#ffb200;">PAY & JOIN GAME</h2>
+<p><b>UPI ID:</b> 8839100416@naviaxis</p>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&cu=INR">
 <br><br>
+<a href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&cu=INR" class="paybtn">DIRECT PAY</a>
+<br><br>
+<button onclick="copyUPI()">COPY UPI ID</button>
+<br><br>
+<h3 style="color:#ffb200;">Upload Payment Screenshot</h3>
+<input type="file">
+<br><br>
+<a href="https://wa.me/918839100416" class="paybtn">SEND SCREENSHOT</a>
+</section>
 
-<button class="pay-btn">Submit</button>
-
-</div>
-
-</div>
-
-</div>
+<!-- FAQ -->
+<section class="section faq">
+<h2 style="color:#ffb200;">FAQ</h2>
+<div><b>Game kaise milega?</b><p>Payment karne ke baad WhatsApp par screenshot bheje.</p></div>
+<div><b>Advance payment kyun?</b><p>Company service aur website maintenance ke liye.</p></div>
+<div><b>Result kab milega?</b><p>Result 30 minute pehle update hota hai.</p></div>
+</section>
 
 <footer>
-
-24/7 Support • Official Portal
-
+MatkaFastResult • Official Matka Result Website • © 2026 All Rights Reserved
 </footer>
 
-<!-- LOGIN MODAL -->
+<a class="whatsapp" href="https://wa.me/918839100416">24/7 Support</a>
 
+<!-- LOGIN / SIGNUP MODAL -->
 <div id="loginModal" class="modal">
-
-<div class="modal-box">
-
-<h2>Login</h2>
-
-<input placeholder="Mobile Number">
-
+<div class="modal-content">
+<h2>User Login</h2>
+<input type="text" placeholder="Mobile Number">
 <input type="password" placeholder="Password">
-
-<button class="pay-btn" onclick="login()">Login</button>
-
-<br><br>
-
-<button class="pay-btn" onclick="closeLogin()">Close</button>
-
+<button class="paybtn" onclick="login()">Login</button>
+<hr>
+<h3>New User Signup</h3>
+<input type="text" placeholder="Mobile Number">
+<input type="password" placeholder="Create Password">
+<button class="paybtn" onclick="signup()">Signup</button>
+</div>
 </div>
 
-</div>
+<p>Your Customer ID: <span id="cid">Not Logged In</span></p>
 
 <script>
-
-function openLogin(){
-document.getElementById("loginModal").style.display="block";
+// COPY UPI
+function copyUPI(){
+navigator.clipboard.writeText("8839100416@naviaxis");
+alert("UPI ID copied!");
 }
 
-function closeLogin(){
-document.getElementById("loginModal").style.display="none";
+// LIVE RESULTS
+const matkaResults = [
+{market:"SRIDEVI", open:130, jodi:42, close:246},
+{market:"TIME BAZAR", open:677, jodi:0, close:550},
+{market:"MILAN DAY", open:559, jodi:96, close:899},
+{market:"RAJDHANI DAY", open:690, jodi:53, close:120},
+{market:"KALYAN", open:150, jodi:63, close:670},
+{market:"SRIDEVI NIGHT", open:348, jodi:58, close:468},
+{market:"MILAN NIGHT", open:225, jodi:95, close:258},
+{market:"RAJDHANI NIGHT", open:466, jodi:65, close:249},
+{market:"KALYAN NIGHT", open:158, jodi:44, close:770},
+{market:"MAIN BAZAR", open:230, jodi:59, close:360}
+];
+function updateResultTable(){
+const table = document.getElementById("resultTable");
+table.innerHTML = `<tr>
+<th>MARKET</th><th>OPEN</th><th>JODI</th><th>CLOSE</th>
+</tr>`;
+matkaResults.forEach(item=>{
+const row = table.insertRow();
+row.insertCell(0).innerText = item.market;
+row.insertCell(1).innerText = item.open;
+row.insertCell(2).innerText = item.jodi;
+row.insertCell(3).innerText = item.close;
+});
 }
+updateResultTable();
+setInterval(updateResultTable,1800000);
 
-function login(){
-alert("Login successful (demo)");
-closeLogin();
+// LOGIN / SIGNUP
+function openLogin(){document.getElementById("loginModal").style.display="block";}
+function closeLogin(){document.getElementById("loginModal").style.display="none";}
+function generateCustomerID(){return "CID"+Math.floor(Math.random()*1000000);}
+function login(){let id=generateCustomerID();localStorage.setItem("customerID",id);document.getElementById("cid").innerText=id;alert("Login Successful");closeLogin();}
+function signup(){let id=generateCustomerID();localStorage.setItem("customerID",id);document.getElementById("cid").innerText=id;alert("Account Created");closeLogin();}
+window.onload=function(){
+let saved=localStorage.getItem("customerID");
+if(saved){document.getElementById("cid").innerText=saved;}
 }
 
 </script>
