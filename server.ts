@@ -32,13 +32,39 @@ async function startServer() {
     }
   });
 
+  // AI Image Generation endpoint
+  app.post("/api/generate-image", async (req, res) => {
+    const { prompt } = req.body;
+    try {
+      const response = await ai.models.generateContent({
+        model: 'gemini-3.1-flash-image-preview',
+        contents: { parts: [{ text: prompt }] },
+        config: { imageConfig: { aspectRatio: "1:1", imageSize: "1K" } },
+      });
+      
+      let imageUrl = null;
+      // response.candidates[0].content.parts mein image data dhundna
+      if (response.candidates && response.candidates[0].content.parts) {
+        for (const part of response.candidates[0].content.parts) {
+          if (part.inlineData) {
+            imageUrl = `data:image/png;base64,${part.inlineData.data}`;
+            break;
+          }
+        }
+      }
+      res.json({ imageUrl });
+    } catch (error) {
+      console.error("Image Gen Error:", error);
+      res.status(500).json({ error: "Failed to generate image" });
+    }
+  });
+
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", env: process.env.NODE_ENV });
   });
 
   // Vite middleware for development or fallback
   if (process.env.NODE_ENV === "development" || !fs.existsSync(path.join(__dirname, "dist"))) {
-    console.log("Using Vite middleware or root fallback");
     if (process.env.NODE_ENV === "development") {
       const vite = await createViteServer({
         server: { middlewareMode: true },
@@ -46,14 +72,12 @@ async function startServer() {
       });
       app.use(vite.middlewares);
     } else {
-      // Fallback for production without build
       app.use(express.static(path.join(__dirname, "src")));
       app.get("*", (req, res) => {
         res.sendFile(path.join(__dirname, "index.html"));
       });
     }
   } else {
-    console.log("Serving static files from dist");
     app.use(express.static(path.join(__dirname, "dist")));
     app.get("*", (req, res) => {
       res.sendFile(path.join(__dirname, "dist", "index.html"));
