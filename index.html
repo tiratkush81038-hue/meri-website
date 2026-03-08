@@ -1,12 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Website</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/main.tsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MatkaFastResult</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#0a0a0a;color:#fff;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;}
+/* Header */
+header{background:#101820;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position: sticky;top:0;z-index:100;}
+header h1{color:#ffb200;font-size:22px;}
+header button{background:#ffb200;color:#101820;font-weight:bold;border:none;padding:10px 20px;border-radius:5px;cursor:pointer;transition:0.3s;}
+header button:hover{transform: scale(1.05);}
+/* Banner */
+.banner{text-align:center;padding:50px 20px;background: linear-gradient(135deg, #1a1a1a, #111);}
+.banner h2{font-size:28px;color:#ffb200;margin-bottom:10px;animation: fadeInDown 1s ease;}
+.banner h3{font-size:20px;color:#fff;margin-bottom:20px;animation: fadeInUp 1s ease;}
+.features{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;}
+.feature{text-align:center;background:#151515;padding:15px 20px;border-radius:10px;transition: transform 0.3s, box-shadow 0.3s;}
+.feature:hover{transform: translateY(-5px);box-shadow: 0 0 15px #ffb200;}
+.feature h4{color:#ffb200;font-size:18px;}
+.feature p{color:#fff;font-size:14px;margin-top:5px;}
+/* Proofs */
+.proofs{padding:50px 20px;text-align:center;}
+.proofs h2{color:#ffb200;margin-bottom:30px;}
+.proof-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+.proof-item{background:#151515;padding:15px;border-radius:10px;width:250px;transition: transform 0.3s, box-shadow 0.3s;}
+.proof-item:hover{transform: translateY(-5px);box-shadow:0 0 20px #ffb200;}
+.proof-item img{width:100%;border-radius:10px;}
+.proof-item p{margin-top:10px;font-size:14px;color:#fff;}
+/* Payment */
+.payment{padding:50px 20px;text-align:center;background:#111;}
+.payment h2{color:#ffb200;margin-bottom:20px;}
+.payment img{width:200px;margin-bottom:15px;border-radius:10px;transition: transform 0.3s;}
+.payment img:hover{transform: scale(1.05);}
+.payment-options{display:flex;justify-content:center;gap:20px;margin-top:10px;}
+.payment-options img{width:60px;cursor:pointer;transition: transform 0.3s;}
+.payment-options img:hover{transform: scale(1.2);}
+/* WhatsApp */
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:15px 20px;border-radius:50px;font-weight:bold;cursor:pointer;z-index:1000;box-shadow:0 0 10px #25D366;transition: transform 0.3s;}
+.whatsapp:hover{transform: scale(1.1);}
+/* Reviews */
+.reviews{padding:50px 20px;text-align:center;}
+.reviews h2{color:#ffb200;margin-bottom:30px;}
+.review-grid{display:flex;flex-direction:column;gap:15px;max-width:600px;margin:0 auto;}
+.review-item{background:#151515;padding:15px;border-radius:10px;text-align:left;transition: transform 0.3s, box-shadow 0.3s;}
+.review-item:hover{transform: translateY(-5px);box-shadow:0 0 20px #ffb200;}
+.review-item p{color:#fff;}
+.review-item span{color:#ffb200;font-weight:bold;}
+/* FAQ */
+.faq{padding:50px 20px;text-align:center;background:#111;}
+.faq h2{color:#ffb200;margin-bottom:30px;}
+.faq-item{background:#151515;padding:15px;border-radius:10px;margin-bottom:10px;cursor:pointer;text-align:left;transition: transform 0.3s, box-shadow 0.3s;}
+.faq-item:hover{transform: translateY(-3px);box-shadow:0 0 15px #ffb200;}
+.faq-item p{color:#fff;display:none;margin-top:10px;}
+/* Footer */
+footer{background:#101820;padding:20px;text-align:center;color:#fff;margin-top:20px;}
+footer p{margin-bottom:5px;color:#ffb200;}
+/* Animations */
+@keyframes fadeInDown{from{opacity:0;transform: translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeInUp{from{opacity:0;transform: translateY(20px);}to{opacity:1;transform:translateY(0);}}
+/* Responsive */
+@media(max-width:768px){.features{flex-direction: column;gap:20px;}.proof-grid{flex-direction: column;gap:20px;}.review-grid{width:100%;}.payment-options{flex-direction: row;flex-wrap:wrap;gap:15px;}}
+
+/* Modal */
+#loginModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;z-index:10000;}
+#loginModalContent{background:#1a1a1a;padding:30px;border-radius:10px;width:90%;max-width:400px;text-align:center;position:relative;}
+#loginModalContent span{position:absolute;top:10px;right:15px;font-size:20px;color:#ffb200;cursor:pointer;}
+#loginModalContent h2{color:#ffb200;margin-bottom:20px;}
+#loginModalContent input{width:90%;padding:10px;margin:10px 0;border-radius:5px;border:none;}
+#loginModalContent button{background:#ffb200;color:#101820;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;font-weight:bold;margin-top:10px;}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+<h1>MUMBAI HEAD OFFICE</h1>
+<button id="loginBtn">Login / Signup</button>
+</header>
+
+<!-- Login Modal -->
+<div id="loginModal">
+<div id="loginModalContent">
+<span id="closeModal">&times;</span>
+<h2>Login / Signup</h2>
+<form>
+<input type="text" placeholder="Your Name"><br>
+<input type="email" placeholder="Email / WhatsApp Number"><br>
+<input type="password" placeholder="Password"><br>
+<button type="submit">Submit</button>
+</form>
+</div>
+</div>
+
+<!-- Banner -->
+<section class="banner">
+<h2>SATTA MATKA COMPANY</h2>
+<h3>DIRECT FROM MUMBAI HEAD OFFICE</h3>
+<div class="features">
+<div class="feature"><h4>100%</h4><p>PASS RATE</p></div>
+<div class="feature"><h4>COMPANY</h4><p>SERVICE</p></div>
+<div class="feature"><h4>24/7</h4><p>SUPPORT</p></div>
+</div>
+</section>
+
+<!-- Proofs -->
+<section class="proofs">
+<h2>MARKETS / PROOF</h2>
+<div class="proof-grid">
+<div class="proof-item"><img src="https://i.ibb.co/0KX5D6Y/proof1.jpg" alt="Proof 1"><p>SRIDEVI NIGHT - 30 Days Old</p></div>
+<div class="proof-item"><img src="https://i.ibb.co/2kC8q6L/proof2.jpg" alt="Proof 2"><p>MILAN NIGHT - 30 Days Old</p></div>
+<div class="proof-item"><img src="https://i.ibb.co/FH1fXgR/proof3.jpg" alt="Proof 3"><p>KALYAN NIGHT - 30 Days Old</p></div>
+</div>
+</section>
+
+<!-- Payment -->
+<section class="payment">
+<h2>PAY & JOIN GAME</h2>
+<img src="https://i.ibb.co/2y0X9gT/qr-code.png" alt="QR Code">
+<div class="payment-options">
+<img src="https://i.ibb.co/1bY9RZ0/paytm.png" alt="Paytm">
+<img src="https://i.ibb.co/HpN0kTx/gpay.png" alt="GPay">
+<img src="https://i.ibb.co/5kR2m8q/phonepe.png" alt="PhonePe">
+</div>
+</section>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/918839100416" target="_blank" class="whatsapp">WhatsApp Now</a>
+
+<!-- Reviews -->
+<section class="reviews">
+<h2>CUSTOMER REVIEWS</h2>
+<div class="review-grid">
+<div class="review-item"><span>Rahul Sharma ⭐⭐⭐⭐⭐</span><p>Achha game tha, good game</p></div>
+<div class="review-item"><span>Amit Patel ⭐⭐⭐⭐⭐</span><p>Pura loss cover ho gaya aj to</p></div>
+<div class="review-item"><span>Vikram Singh ⭐⭐⭐⭐⭐</span><p>Official website, trust me!</p></div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+<h2>FAQ</h2>
+<div class="faq-item"><strong>Game kaise milega?</strong><p>QR par payment dalo WhatsApp par screenshot bhejo, game mil jayega</p></div>
+<div class="faq-item"><strong>Advance payment kyun?</strong><p>Company aur website ka kharch</p></div>
+<div class="faq-item"><strong>Result kab update hota?</strong><p>Result 30 min pahle update kiya jata hai</p></div>
+</section>
+
+<!-- Footer -->
+<footer>
+<p>MatkaFastResult</p>
+<p>Official Matka Result Website</p>
+<p>© 2026 All Rights Reserved</p>
+</footer>
+
+<script>
+// FAQ toggle
+document.querySelectorAll('.faq-item').forEach(item=>{
+item.addEventListener('click',()=>{const p=item.querySelector('p');p.style.display=p.style.display==='block'?'none':'block';});
+});
+// Modal toggle
+const loginBtn=document.getElementById('loginBtn');
+const loginModal=document.getElementById('loginModal');
+const closeModal=document.getElementById('closeModal');
+loginBtn.onclick=()=>{loginModal.style.display='flex';}
+closeModal.onclick=()=>{loginModal.style.display='none';}
+window.onclick=(e)=>{if(e.target==loginModal){loginModal.style.display='none';}}
+</script>
+
+</body>
 </html>
