@@ -3,7 +3,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MatkaFastResult</title><style>
-body{margin:0;font-family:Arial;background:#0f0f0f;color:white;}
+
+body{
+margin:0;
+font-family:Arial;
+background:#0f0f0f;
+color:white;
+}
 
 header{
 background:#101820;
@@ -104,19 +110,25 @@ display:inline-block;
 }
 
 .proof-box img{
-width:200px;
+width:220px;
 border-radius:10px;
 }
 
 .blur-area{
 position:absolute;
-top:80px;
-left:20px;
-width:160px;
+
+top:50%;
+left:50%;
+
+transform:translate(-50%,-50%);
+
+width:150px;
 height:40px;
-backdrop-filter:blur(8px);
-background:rgba(255,255,255,0.2);
-border-radius:5px;
+
+backdrop-filter:blur(12px);
+background:rgba(255,255,255,0.3);
+
+border-radius:6px;
 }
 
 .reviews-slider{
@@ -183,7 +195,7 @@ min-width:180px;
 }
 
 .proof-box img{
-width:120px;
+width:140px;
 }
 
 .banner h1{
@@ -191,25 +203,25 @@ font-size:24px;
 }
 
 }
-</style></head><body><header>
-MUMBAI HEAD OFFICE
-<button id="loginBtn" onclick="openLogin()">Login / Signup</button>
-<span id="welcomeMsg"></span>
+
+</style></head><body><header>MUMBAI HEAD OFFICE
+
+<button id="loginBtn" onclick="openLogin()">
+Login / Signup
+</button><span id="welcomeMsg"></span>
+
 </header><div id="liveUsersBox">
 👥 Live Users Online: <span id="liveUsers">84</span>
 </div><marquee>
 SRIDEVI 130 | TIME BAZAR 677 | MILAN DAY 559 | RAJDHANI DAY 690 | MAIN BAZAR 230
-</marquee><section class="banner">
-<h1>SATTA MATKA COMPANY</h1>
-<h2>DIRECT FROM MUMBAI HEAD OFFICE</h2>
-</section><section class="section"><h2 style="color:#ffb200;">LIVE MATKA RESULT</h2><table id="resultTable">
-<tr>
+</marquee><section class="banner"><h1>SATTA MATKA COMPANY</h1><h2>DIRECT FROM MUMBAI HEAD OFFICE</h2></section><section class="section"><h2 style="color:#ffb200;">
+LIVE MATKA RESULT
+</h2><table id="resultTable"><tr>
 <th>MARKET</th>
 <th>OPEN</th>
 <th>JODI</th>
 <th>CLOSE</th>
-</tr>
-</table></section><section class="section"><p>
+</tr></table></section><section class="section"><p>
 हमारे सभी सट्टा खेलने वाले भाई परेशान थे लोगो को पैसा देदे कर  
 इस लिए अब मुंबई से सीधा गेम मिलेगा
 </p><div class="box"><h2 style="color:#ffb200;">GAMES</h2><p>
@@ -257,12 +269,14 @@ href="https://wa.me/918839100416">
 SEND SCREENSHOT
 </a>
 
-</section><section class="section"><h2 style="color:#ffb200;">FAQ</h2><p>Game kaise milega ?</p><p>
+</section><section class="section"><h2 style="color:#ffb200;">FAQ</h2><p>
+Game kaise milega ?
+</p><p>
 Payment karne ke baad WhatsApp par screenshot bheje  
 game turant WhatsApp par mil jayega
 </p></section><a class="whatsapp" href="https://wa.me/918839100416">
 24/7 SUPPORT
-</a><!-- LOGIN MODAL --><div id="loginModal" class="modal"><div class="modal-content"><h2>User Login</h2><input id="loginNumber" placeholder="Mobile Number"><input id="loginPassword" type="password" placeholder="Password"><button onclick="login()">Login</button>
+</a><div id="loginModal" class="modal"><div class="modal-content"><h2>User Login</h2><input id="loginNumber" placeholder="Mobile Number"><input id="loginPassword" type="password" placeholder="Password"><button onclick="login()">Login</button>
 
 <hr><h3>Signup</h3><input id="signupName" placeholder="Full Name"><input id="signupNumber" placeholder="Mobile Number"><input id="signupOTP" placeholder="OTP"><input id="signupPassword" type="password" placeholder="Password"><button onclick="signup()">Signup</button>
 
@@ -294,19 +308,31 @@ return "CID"+Math.floor(Math.random()*1000000)
 }
 
 function login(){
+
 let id=generateCustomerID()
+
 localStorage.setItem("cid",id)
+
 document.getElementById("loginBtn").style.display="none"
+
 document.getElementById("welcomeMsg").innerText=" Welcome "+id
+
 closeLogin()
+
 }
 
 function signup(){
+
 let id=generateCustomerID()
+
 localStorage.setItem("cid",id)
+
 document.getElementById("loginBtn").style.display="none"
+
 document.getElementById("welcomeMsg").innerText=" Welcome "+id
+
 closeLogin()
+
 }
 
 function openLogin(){
@@ -318,19 +344,27 @@ document.getElementById("loginModal").style.display="none"
 }
 
 const slider=document.getElementById("reviewsSlider")
+
 let scroll=0
 
 setInterval(()=>{
+
 scroll++
+
 if(scroll>slider.scrollWidth-slider.clientWidth){
 scroll=0
 }
+
 slider.scrollTo({left:scroll})
+
 },40)
 
 function updateUsers(){
+
 let num=Math.floor(Math.random()*80)+60
+
 document.getElementById("liveUsers").innerText=num
+
 }
 
 setInterval(updateUsers,4000)
