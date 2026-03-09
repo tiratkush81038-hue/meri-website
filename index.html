@@ -3,12 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MatkaFastResult</title><style>
-body{
-margin:0;
-font-family:Arial;
-background:#0f0f0f;
-color:white;
-}
+body{margin:0;font-family:Arial;background:#0f0f0f;color:white;}
 
 header{
 background:#101820;
@@ -30,6 +25,15 @@ border:none;
 padding:8px 14px;
 border-radius:6px;
 font-weight:bold;
+}
+
+#liveUsersBox{
+background:#151515;
+color:#ffb200;
+text-align:center;
+padding:10px;
+font-weight:bold;
+border-bottom:2px solid #ffb200;
 }
 
 marquee{
@@ -94,10 +98,25 @@ color:#ffb200;
 font-weight:bold;
 }
 
-.proofs img{
+.proof-box{
+position:relative;
+display:inline-block;
+}
+
+.proof-box img{
 width:200px;
-margin:10px;
 border-radius:10px;
+}
+
+.blur-area{
+position:absolute;
+top:80px;
+left:20px;
+width:160px;
+height:40px;
+backdrop-filter:blur(8px);
+background:rgba(255,255,255,0.2);
+border-radius:5px;
 }
 
 .reviews-slider{
@@ -163,7 +182,7 @@ font-weight:bold;
 min-width:180px;
 }
 
-.proofs img{
+.proof-box img{
 width:120px;
 }
 
@@ -176,13 +195,14 @@ font-size:24px;
 MUMBAI HEAD OFFICE
 <button id="loginBtn" onclick="openLogin()">Login / Signup</button>
 <span id="welcomeMsg"></span>
-</header><marquee>
+</header><div id="liveUsersBox">
+👥 Live Users Online: <span id="liveUsers">84</span>
+</div><marquee>
 SRIDEVI 130 | TIME BAZAR 677 | MILAN DAY 559 | RAJDHANI DAY 690 | MAIN BAZAR 230
 </marquee><section class="banner">
 <h1>SATTA MATKA COMPANY</h1>
 <h2>DIRECT FROM MUMBAI HEAD OFFICE</h2>
-</section><section class="section">
-<h2 style="color:#ffb200;">LIVE MATKA RESULT</h2><table id="resultTable">
+</section><section class="section"><h2 style="color:#ffb200;">LIVE MATKA RESULT</h2><table id="resultTable">
 <tr>
 <th>MARKET</th>
 <th>OPEN</th>
@@ -191,7 +211,7 @@ SRIDEVI 130 | TIME BAZAR 677 | MILAN DAY 559 | RAJDHANI DAY 690 | MAIN BAZAR 230
 </tr>
 </table></section><section class="section"><p>
 हमारे सभी सट्टा खेलने वाले भाई परेशान थे लोगो को पैसा देदे कर  
-इस लिए अब मुंबई से सीधा गेम मिलेगा  
+इस लिए अब मुंबई से सीधा गेम मिलेगा
 </p><div class="box"><h2 style="color:#ffb200;">GAMES</h2><p>
 SRIDEVI • TIME BAZAR • MILAN DAY • RAJDHANI •  
 KALYAN • SRIDEVI NIGHT • MILAN NIGHT •  
@@ -201,7 +221,7 @@ href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR">
 PAY NOW
 </a>
 
-</div></section><section class="section proofs"><h2 style="color:#ffb200;">WINNING PROOFS</h2><img src="https://i.postimg.cc/fy3YPryh/Picsart-26-03-09-11-11-08-195.jpg"></section><section class="section"><h2 style="color:#ffb200;">CUSTOMER REVIEWS</h2><div class="reviews-slider" id="reviewsSlider"><div class="review-item">
+</div></section><section class="section"><h2 style="color:#ffb200;">WINNING PROOFS</h2><div class="proof-box"><img src="https://i.postimg.cc/fy3YPryh/Picsart-26-03-09-11-11-08-195.jpg"><div class="blur-area"></div></div></section><section class="section"><h2 style="color:#ffb200;">CUSTOMER REVIEWS</h2><div class="reviews-slider" id="reviewsSlider"><div class="review-item">
 <b>Rahul Sharma</b><br>
 ★★★★★<br>
 Game accurate tha
@@ -230,17 +250,14 @@ DIRECT PAY
 
 <br><br>
 
-<h3>Upload Payment Screenshot</h3>
-<input type="file"><br><br>
+<h3>Upload Payment Screenshot</h3><input type="file"><br><br>
 
 <a class="paybtn"
 href="https://wa.me/918839100416">
 SEND SCREENSHOT
 </a>
 
-</section><section class="section"><h2 style="color:#ffb200;">FAQ</h2><p>
-Game kaise milega ?
-</p><p>
+</section><section class="section"><h2 style="color:#ffb200;">FAQ</h2><p>Game kaise milega ?</p><p>
 Payment karne ke baad WhatsApp par screenshot bheje  
 game turant WhatsApp par mil jayega
 </p></section><a class="whatsapp" href="https://wa.me/918839100416">
@@ -277,31 +294,19 @@ return "CID"+Math.floor(Math.random()*1000000)
 }
 
 function login(){
-
 let id=generateCustomerID()
-
 localStorage.setItem("cid",id)
-
 document.getElementById("loginBtn").style.display="none"
-
-document.getElementById("welcomeMsg").innerText="Welcome "+id
-
+document.getElementById("welcomeMsg").innerText=" Welcome "+id
 closeLogin()
-
 }
 
 function signup(){
-
 let id=generateCustomerID()
-
 localStorage.setItem("cid",id)
-
 document.getElementById("loginBtn").style.display="none"
-
-document.getElementById("welcomeMsg").innerText="Welcome "+id
-
+document.getElementById("welcomeMsg").innerText=" Welcome "+id
 closeLogin()
-
 }
 
 function openLogin(){
@@ -313,20 +318,22 @@ document.getElementById("loginModal").style.display="none"
 }
 
 const slider=document.getElementById("reviewsSlider")
-
 let scroll=0
 
 setInterval(()=>{
-
 scroll++
-
 if(scroll>slider.scrollWidth-slider.clientWidth){
 scroll=0
 }
-
 slider.scrollTo({left:scroll})
-
 },40)
+
+function updateUsers(){
+let num=Math.floor(Math.random()*80)+60
+document.getElementById("liveUsers").innerText=num
+}
+
+setInterval(updateUsers,4000)
 
 </script></body>
 </html>
