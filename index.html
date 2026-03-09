@@ -1,153 +1,310 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MatkaFastResult</title>
-<style>
+<title>MatkaFastResult</title><style>
 body{margin:0;font-family:Arial;background:#0f0f0f;color:white;}
-header{background:#101820;padding:15px;text-align:center;position:relative;}
-header h1{color:#ffb200;margin:0;}
-header button{position:absolute;right:15px;top:10px;background:#ffb200;color:#000;border:none;padding:8px 14px;border-radius:6px;font-weight:bold;cursor:pointer;}
-#liveUsersBox{background:#151515;color:#ffb200;text-align:center;padding:10px;font-weight:bold;border-bottom:2px solid #ffb200;}
-marquee{background:#ffb200;color:#101820;padding:8px;font-weight:bold;}
-.banner{text-align:center;padding:60px 20px;background:#151515;}
-.banner h1{color:#ffb200;font-size:30px;}
-.section{padding:40px 20px;text-align:center;}
-.box{background:#151515;border:2px solid #ffb200;padding:25px;border-radius:10px;max-width:600px;margin:auto;}
-.paybtn{display:inline-block;background:linear-gradient(90deg,#ffb200,#ff7b00);color:#000;padding:12px 20px;border-radius:6px;font-weight:bold;text-decoration:none;margin-top:10px;}
-table{width:100%;border-collapse:collapse;background:#151515;margin:20px auto;}
-th{background:#ffb200;color:#101820;padding:10px;}
-td{padding:10px;border-bottom:1px solid #333;color:#ffb200;font-weight:bold;}
-.proof-box{position:relative;display:inline-block;margin:10px;}
-.proof-box img{width:220px;border-radius:10px;}
-.blur-area{position:absolute;top:5px;left:50%;transform:translateX(-50%);width:150px;height:35px;backdrop-filter:blur(12px);background:rgba(255,255,255,0.3);border-radius:6px;}
-.reviews-slider{display:flex;overflow:hidden;gap:15px;scroll-behavior:smooth;}
-.review-item{min-width:250px;background:#151515;padding:15px;border-radius:8px;text-align:left;}
-.review-item b{color:#ffb200;}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);}
-.modal-content{background:#1b1b1b;padding:25px;max-width:400px;margin:100px auto;border-radius:10px;text-align:center;}
-.modal-content input{width:100%;padding:10px;margin:6px 0;background:#111;border:1px solid #333;color:white;}
-.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;padding:15px 20px;border-radius:50px;color:white;text-decoration:none;font-weight:bold;}
-@media(max-width:768px){.review-item{min-width:180px;}.proof-box img{width:140px;}.banner h1{font-size:24px;}}
-</style>
-</head>
-<body>
 
-<header>
+header{
+background:#101820;
+padding:15px;
+text-align:center;
+position:relative;
+}
+
+header h1{
+color:#ffb200;
+margin:0;
+}
+
+header button{
+position:absolute;
+right:15px;
+top:10px;
+background:#ffb200;
+color:#000;
+border:none;
+padding:8px 14px;
+border-radius:6px;
+font-weight:bold;
+cursor:pointer;
+}
+
+#liveUsersBox{
+background:#151515;
+color:#ffb200;
+text-align:center;
+padding:10px;
+font-weight:bold;
+border-bottom:2px solid #ffb200;
+}
+
+marquee{
+background:#ffb200;
+color:#101820;
+padding:8px;
+font-weight:bold;
+}
+
+.banner{
+text-align:center;
+padding:60px 20px;
+background:#151515;
+}
+
+.banner h1{
+color:#ffb200;
+font-size:30px;
+}
+
+.section{
+padding:40px 20px;
+text-align:center;
+}
+
+.box{
+background:#151515;
+border:2px solid #ffb200;
+padding:25px;
+border-radius:10px;
+max-width:600px;
+margin:auto;
+}
+
+.paybtn{
+display:inline-block;
+background:linear-gradient(90deg,#ffb200,#ff7b00);
+color:#000;
+padding:12px 20px;
+border-radius:6px;
+font-weight:bold;
+text-decoration:none;
+margin-top:10px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:#151515;
+margin:20px auto;
+}
+
+th{
+background:#ffb200;
+color:#101820;
+padding:10px;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #333;
+color:#ffb200;
+font-weight:bold;
+}
+
+.proof-box{
+position:relative;
+display:inline-block;
+margin:10px;
+}
+
+.proof-box img{
+width:220px;
+border-radius:10px;
+}
+
+.blur-area{
+position:absolute;
+top:5px;
+left:50%;
+transform:translateX(-50%);
+width:150px;
+height:35px;
+backdrop-filter:blur(12px);
+background:rgba(255,255,255,0.3);
+border-radius:6px;
+}
+
+.reviews-slider{
+display:flex;
+overflow:hidden;
+gap:15px;
+scroll-behavior:smooth;
+}
+
+.review-item{
+min-width:250px;
+background:#151515;
+padding:15px;
+border-radius:8px;
+text-align:left;
+}
+
+.review-item b{
+color:#ffb200;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+}
+
+.modal-content{
+background:#1b1b1b;
+padding:25px;
+max-width:400px;
+margin:100px auto;
+border-radius:10px;
+text-align:center;
+}
+
+.modal-content input{
+width:100%;
+padding:10px;
+margin:6px 0;
+background:#111;
+border:1px solid #333;
+color:white;
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+padding:15px 20px;
+border-radius:50px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+@media(max-width:768px){
+.review-item{min-width:180px;}
+.proof-box img{width:140px;}
+.banner h1{font-size:24px;}
+}
+</style></head><body><header>
 <h1>MUMBAI HEAD OFFICE</h1>
 <button id="loginBtn" onclick="openLogin()">Login / Signup</button>
 <span id="welcomeMsg"></span>
-</header>
-
-<div id="liveUsersBox">👥 Live Users Online: <span id="liveUsers">84</span></div>
-
-<marquee>SRIDEVI 130 | TIME BAZAR 677 | MILAN DAY 559 | RAJDHANI DAY 690 | MAIN BAZAR 230</marquee>
-
-<section class="banner">
+</header><div id="liveUsersBox">
+👥 Live Users Online: <span id="liveUsers">84</span>
+</div><marquee>
+SRIDEVI 130 | TIME BAZAR 677 | MILAN DAY 450 | RAJDHANI DAY 145 | KALYAN 890
+</marquee><section class="banner">
 <h1>SATTA MATKA COMPANY</h1>
-<h2 style="color:#ffb200;">DIRECT FROM MUMBAI HEAD OFFICE</h2>
-</section>
+<h2 style="color:#ffb200;">
+DIRECT FROM MUMBAI HEAD OFFICE
+</h2>
+</section><section class="section">
+<h2 style="color:#ffb200;">LIVE MATKA RESULT</h2><table id="resultTable">
+<tr>
+<th>MARKET</th>
+<th>OPEN</th>
+<th>JODI</th>
+<th>CLOSE</th>
+</tr>
+</table></section><section class="section"><p>
+हमारे सभी सट्टा खेलने वाले भाई परेशान थे लोगो को पैसा देदे कर इस लिए अब मुंबई से सीधा गेम मिलेगा
+</p><div class="box"><h2 style="color:#ffb200;">GAMES</h2><p>
+SRIDEVI • TIME BAZAR • MILAN DAY • RAJDHANI •
+KALYAN • SRIDEVI NIGHT • MILAN NIGHT •
+RAJDHANI NIGHT • KALYAN NIGHT • MAIN BAZAR
+</p><h3 style="color:#ffb200;">
+ADVANCE ONLY ₹2999
+</h3><a class="paybtn"
+href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR">
+PAY NOW
+</a>
 
-<section class="section">
-<h2 style="color:#ffb200;">LIVE MATKA RESULT</h2>
-<table id="resultTable">
-<tr><th>MARKET</th><th>OPEN</th><th>JODI</th><th>CLOSE</th></tr>
-</table>
-</section>
-
-<section class="section">
-<p>हमारे सभी सट्टा खेलने वाले भाई परेशान थे लोगो को पैसा देदे कर इस लिए अब मुंबई से सीधा गेम मिलेगा</p>
-<div class="box">
-<h2 style="color:#ffb200;">GAMES</h2>
-<p>SRIDEVI • TIME BAZAR • MILAN DAY • RAJDHANI • KALYAN • SRIDEVI NIGHT • MILAN NIGHT • RAJDHANI NIGHT • KALYAN NIGHT • MAIN BAZAR</p>
-<h3 style="color:#ffb200;">ADVANCE ONLY ₹2999</h3>
-<a class="paybtn" href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR">PAY NOW</a>
-</div>
-</section>
-
-<section class="section">
-<h2 style="color:#ffb200;">WINNING PROOFS</h2>
-<div class="proof-box">
-<img src="https://i.postimg.cc/fy3YPryh/Picsart-26-03-09-11-11-08-195.jpg">
+</div></section><section class="section"><h2 style="color:#ffb200;">WINNING PROOFS</h2><div class="proof-box">
+<img src="https://i.postimg.cc/prbHkPvb/Picsart-26-03-09-17-14-06-126.jpg">
 <div class="blur-area"></div>
-</div>
-</section>
+</div></section><section class="section"><h2 style="color:#ffb200;">CUSTOMER REVIEWS</h2><div class="reviews-slider" id="reviewsSlider"><div class="review-item">
+<b>Rahul Sharma</b><br>
+★★★★★<br>
+Game accurate tha
+</div><div class="review-item">
+<b>Amit Patel</b><br>
+★★★★★<br>
+Paisa recover ho gaya
+</div><div class="review-item">
+<b>Vikram Singh</b><br>
+★★★★★<br>
+Best matka website
+</div><div class="review-item">
+<b>Deepak Kumar</b><br>
+★★★★★<br>
+Result fast milta hai
+</div></div></section><section class="section"><h2 style="color:#ffb200;">PAY & JOIN GAME</h2><img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR"><br><br>
 
-<section class="section">
-<h2 style="color:#ffb200;">CUSTOMER REVIEWS</h2>
-<div class="reviews-slider" id="reviewsSlider">
-<div class="review-item"><b>Rahul Sharma</b><br>★★★★★<br>Game accurate tha</div>
-<div class="review-item"><b>Amit Patel</b><br>★★★★★<br>Paisa recover ho gaya</div>
-<div class="review-item"><b>Vikram Singh</b><br>★★★★★<br>Best matka website</div>
-<div class="review-item"><b>Deepak Kumar</b><br>★★★★★<br>Result fast milta hai</div>
-<div class="review-item"><b>Priya Sharma</b><br>★★★★★<br>Trusted website</div>
-</div>
-</section>
+<a class="paybtn"
+href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR">
+DIRECT PAY
+</a>
 
-<section class="section">
-<h2 style="color:#ffb200;">PAY & JOIN GAME</h2>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR"><br><br>
-<a class="paybtn" href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR">DIRECT PAY</a>
 <br><br>
-<h3>Upload Payment Screenshot</h3>
-<input type="file">
-<br><br>
-<a class="paybtn" href="https://wa.me/918839100416">SEND SCREENSHOT</a>
-</section>
 
-<section class="section">
-<h2 style="color:#ffb200;">FAQ</h2>
-<p>Game kaise milega ?</p>
-<p>Payment karne ke baad WhatsApp par screenshot bheje game turant WhatsApp par mil jayega</p>
-</section>
+<h3>Upload Payment Screenshot</h3><input type="file"><br><br>
 
-<footer style="background:#101820;color:#ffb200;padding:30px 20px;text-align:center;">
-<p><b>MatkaFastResult</b> - Official Matka Result Website</p>
-<p>Contact: <a href="https://wa.me/918839100416" style="color:#ffb200;">+91 8839100416</a></p>
-<p>© 2026 All Rights Reserved | Designed with 🔥</p>
-</footer>
+<a class="paybtn"
+href="https://wa.me/918839100416">
+SEND SCREENSHOT
+</a>
 
-<a class="whatsapp" href="https://wa.me/918839100416">24/7 SUPPORT</a>
-
-<!-- Login Modal -->
-<div id="loginModal" class="modal">
-<div class="modal-content">
-<h2>User Login</h2>
-<input id="loginNumber" placeholder="Mobile Number">
-<input id="loginPassword" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
-<hr>
-<h3>Signup</h3>
-<input id="signupName" placeholder="Full Name">
-<input id="signupNumber" placeholder="Mobile Number">
-<input id="signupOTP" placeholder="OTP">
-<input id="signupPassword" type="password" placeholder="Password">
-<button onclick="signup()">Signup</button>
-<button onclick="closeLogin()">Close</button>
-</div>
-</div>
+</section><footer style="background:#101820;color:#ffb200;padding:30px;text-align:center;"><p>
+MatkaFastResult - Official Matka Result Website
+</p><p>
+Contact:
+<a href="https://wa.me/918839100416" style="color:#ffb200;">
++91 8839100416
+</a>
+</p></footer><a class="whatsapp"
+href="https://wa.me/918839100416">
+24/7 SUPPORT
+</a>
 
 <script>
-// Fake live users
-setInterval(()=>{document.getElementById("liveUsers").innerText=Math.floor(Math.random()*50)+60;},4000);
 
-// Reviews slider
-let reviews=document.getElementById("reviewsSlider");let scroll=0;
-setInterval(()=>{scroll++;if(scroll>reviews.scrollWidth-reviews.clientWidth) scroll=0;reviews.scrollTo({left:scroll});},40);
+setInterval(()=>{
+document.getElementById("liveUsers").innerText=
+Math.floor(Math.random()*50)+60;
+},4000);
 
-// Customer ID
-function generateCustomerID(){return "CID"+Math.floor(Math.random()*1000000);}
-function login(){let id=generateCustomerID();localStorage.setItem("cid",id);document.getElementById("loginBtn").style.display="none";document.getElementById("welcomeMsg").innerText=" Welcome "+id;closeLogin();}
-function signup(){let id=generateCustomerID();localStorage.setItem("cid",id);document.getElementById("loginBtn").style.display="none";document.getElementById("welcomeMsg").innerText=" Welcome "+id;closeLogin();}
-function openLogin(){document.getElementById("loginModal").style.display="block";}
-function closeLogin(){document.getElementById("loginModal").style.display="none";}
+const results=[
 
-// Matka Results
-const results=[["SRIDEVI",457,60,578],["TIME BAZAR",390,29,126],["MILAN DAY",559,96,899],["RAJDHANI DAY",690,53,120],["KALYAN",150,63,670],["MAIN BAZAR",230,59,360]];
+["SRIDEVI",457,60,578],
+
+["TIME BAZAR",390,29,126],
+
+["MILAN DAY",450,92,129],
+
+["RAJDHANI DAY",145,4,220],
+
+["KALYAN",890,70,127],
+
+["MAIN BAZAR",230,59,360]
+
+];
+
 let table=document.getElementById("resultTable");
-results.forEach(r=>{let row=table.insertRow();row.insertCell(0).innerText=r[0];row.insertCell(1).innerText=r[1];row.insertCell(2).innerText=r[2];row.insertCell(3).innerText=r[3];});
-</script>
 
-</body>
+results.forEach(r=>{
+
+let row=table.insertRow();
+
+row.insertCell(0).innerText=r[0];
+row.insertCell(1).innerText=r[1];
+row.insertCell(2).innerText=r[2];
+row.insertCell(3).innerText=r[3];
+
+});
+
+</script></body>
 </html>
