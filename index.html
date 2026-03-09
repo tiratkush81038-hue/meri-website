@@ -1,243 +1,332 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MatkaFastResult</title>
-<style>
-body{margin:0;font-family:Arial, sans-serif;background:#0f0f0f;color:white;}
-header{background:#101820;padding:15px;text-align:center;font-size:22px;color:#ffb200;font-weight:bold;position:relative;}
-header button{position:absolute;right:20px;top:12px;background:#ffb200;color:#101820;border:none;padding:6px 12px;border-radius:5px;font-weight:bold;cursor:pointer;transition:0.3s;}
-header button:hover{background:#ffd24d;}
-marquee{background:#ffb200;color:#101820;padding:8px;font-weight:bold;}
-.banner{text-align:center;padding:60px 20px;background:linear-gradient(45deg,#151515,#1d1d1d);border-bottom:2px solid #ffb200;}
-.banner h1{color:#ffb200;font-size:32px;}
-.banner h2{font-size:20px;}
-.result{padding:40px 20px;text-align:center;overflow-x:auto;}
-.result table{width:100%;min-width:500px;border-collapse:collapse;background:#151515;}
-.result th{background:#ffb200;color:#101820;padding:10px;}
-.result td{padding:10px;border-bottom:1px solid #333;font-weight:bold;color:#ffb200;}
-.section{padding:40px 20px;text-align:center;background:#111;}
-.box{background:#151515;border:2px solid #ffb200;padding:25px;border-radius:10px;max-width:600px;margin:auto;}
-.box h2{color:#ffb200;}
-.paybtn{background:linear-gradient(90deg,#ffb200,#ff7b00);color:#101820;padding:12px 20px;font-weight:bold;border-radius:5px;display:inline-block;margin-top:10px;text-decoration:none;transition:0.3s;}
-.paybtn:hover{transform:scale(1.05);background:#ffd24d;}
-.proofs img{width:200px;margin:10px;border-radius:10px;box-shadow:0 0 10px rgba(255,178,0,0.4);}
-.faq{max-width:800px;margin:auto;text-align:left;}
-.faq div{background:#151515;padding:15px;margin-bottom:10px;border-radius:5px;}
-.reviews div{background:#151515;padding:15px;border-radius:8px;margin-bottom:10px;}
-.reviews b{color:#ffb200;}
-footer{background:#101820;text-align:center;padding:20px;margin-top:30px;}
-.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;padding:15px 20px;border-radius:50px;color:white;font-weight:bold;text-decoration:none;box-shadow:0 0 10px #25D366;}
-button{cursor:pointer;padding:10px 20px;border:none;border-radius:5px;background:#ffb200;color:#101820;font-weight:bold;transition:0.3s;}
-button:hover{transform:scale(1.05);}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;}
-.modal-content{background:#1b1b1b;padding:30px;max-width:400px;margin:100px auto;border-radius:10px;text-align:center;}
-.modal-content input{width:100%;padding:10px;margin:8px 0;background:#111;border:1px solid #333;color:white;border-radius:6px;}
-/* MOBILE RESPONSIVE */
-@media (max-width:768px){
-header, .banner, .section, footer{padding:20px;text-align:center;}
-.banner h1{font-size:24px;}
-.banner h2{font-size:18px;}
-.result th, .result td{font-size:14px;}
-.paybtn{padding:10px 15px;font-size:14px;}
-.proofs img{width:120px;margin:5px;}
-header button{top:8px;right:10px;padding:5px 10px;font-size:14px;}
-.reviews div{font-size:14px;}
+<title>MatkaFastResult</title><style>
+body{
+margin:0;
+font-family:Arial;
+background:#0f0f0f;
+color:white;
 }
-</style>
-</head>
-<body>
 
-<header>
+header{
+background:#101820;
+padding:15px;
+text-align:center;
+color:#ffb200;
+font-size:22px;
+font-weight:bold;
+position:relative;
+}
+
+header button{
+position:absolute;
+right:15px;
+top:10px;
+background:#ffb200;
+color:#000;
+border:none;
+padding:8px 14px;
+border-radius:6px;
+font-weight:bold;
+}
+
+marquee{
+background:#ffb200;
+color:#000;
+padding:8px;
+font-weight:bold;
+}
+
+.banner{
+padding:60px 20px;
+text-align:center;
+background:#151515;
+}
+
+.banner h1{
+color:#ffb200;
+font-size:30px;
+}
+
+.section{
+padding:40px 20px;
+text-align:center;
+}
+
+.box{
+background:#151515;
+border:2px solid #ffb200;
+padding:25px;
+border-radius:10px;
+max-width:600px;
+margin:auto;
+}
+
+.paybtn{
+display:inline-block;
+background:linear-gradient(90deg,#ffb200,#ff7b00);
+color:#000;
+padding:12px 20px;
+border-radius:6px;
+font-weight:bold;
+text-decoration:none;
+margin-top:10px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:#151515;
+}
+
+th{
+background:#ffb200;
+color:#000;
+padding:10px;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #333;
+color:#ffb200;
+font-weight:bold;
+}
+
+.proofs img{
+width:200px;
+margin:10px;
+border-radius:10px;
+}
+
+.reviews-slider{
+display:flex;
+overflow:hidden;
+gap:15px;
+}
+
+.review-item{
+min-width:250px;
+background:#151515;
+padding:15px;
+border-radius:8px;
+}
+
+.review-item b{
+color:#ffb200;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+}
+
+.modal-content{
+background:#1b1b1b;
+padding:25px;
+max-width:400px;
+margin:100px auto;
+border-radius:10px;
+text-align:center;
+}
+
+.modal-content input{
+width:100%;
+padding:10px;
+margin:6px 0;
+background:#111;
+border:1px solid #333;
+color:white;
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+padding:15px 20px;
+border-radius:50px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+@media(max-width:768px){
+
+.review-item{
+min-width:180px;
+}
+
+.proofs img{
+width:120px;
+}
+
+.banner h1{
+font-size:24px;
+}
+
+}
+</style></head><body><header>
 MUMBAI HEAD OFFICE
 <button id="loginBtn" onclick="openLogin()">Login / Signup</button>
-<span id="welcomeMsg" style="margin-left:10px;color:#ffb200;font-weight:bold;"></span>
-</header>
-
-<marquee>🔥 SRIDEVI 130 | TIME BAZAR 677 | MILAN DAY 559 | RAJDHANI DAY 690 | KALYAN 150 | MAIN BAZAR 230 🔥</marquee>
-
-<section class="banner">
+<span id="welcomeMsg"></span>
+</header><marquee>
+SRIDEVI 130 | TIME BAZAR 677 | MILAN DAY 559 | RAJDHANI DAY 690 | MAIN BAZAR 230
+</marquee><section class="banner">
 <h1>SATTA MATKA COMPANY</h1>
 <h2>DIRECT FROM MUMBAI HEAD OFFICE</h2>
-</section>
+</section><section class="section">
+<h2 style="color:#ffb200;">LIVE MATKA RESULT</h2><table id="resultTable">
+<tr>
+<th>MARKET</th>
+<th>OPEN</th>
+<th>JODI</th>
+<th>CLOSE</th>
+</tr>
+</table></section><section class="section"><p>
+हमारे सभी सट्टा खेलने वाले भाई परेशान थे लोगो को पैसा देदे कर  
+इस लिए अब मुंबई से सीधा गेम मिलेगा  
+</p><div class="box"><h2 style="color:#ffb200;">GAMES</h2><p>
+SRIDEVI • TIME BAZAR • MILAN DAY • RAJDHANI •  
+KALYAN • SRIDEVI NIGHT • MILAN NIGHT •  
+RAJDHANI NIGHT • KALYAN NIGHT • MAIN BAZAR
+</p><h3 style="color:#ffb200;">ADVANCE ONLY ₹2999</h3><a class="paybtn"
+href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR">
+PAY NOW
+</a>
 
-<section class="result" id="autoResultSection">
-<h2 style="color:#ffb200;">LIVE MATKA RESULT</h2>
-<table id="resultTable">
-<tr><th>MARKET</th><th>OPEN</th><th>JODI</th><th>CLOSE</th></tr>
-</table>
-</section>
+</div></section><section class="section proofs"><h2 style="color:#ffb200;">WINNING PROOFS</h2><img src="https://i.postimg.cc/fy3YPryh/Picsart-26-03-09-11-11-08-195.jpg"></section><section class="section"><h2 style="color:#ffb200;">CUSTOMER REVIEWS</h2><div class="reviews-slider" id="reviewsSlider"><div class="review-item">
+<b>Rahul Sharma</b><br>
+★★★★★<br>
+Game accurate tha
+</div><div class="review-item">
+<b>Amit Patel</b><br>
+★★★★★<br>
+Paisa recover ho gaya
+</div><div class="review-item">
+<b>Vikram Singh</b><br>
+★★★★★<br>
+Best matka website
+</div><div class="review-item">
+<b>Deepak Kumar</b><br>
+★★★★★<br>
+Result fast milta hai
+</div><div class="review-item">
+<b>Priya Sharma</b><br>
+★★★★★<br>
+Trusted website
+</div></div></section><section class="section"><h2 style="color:#ffb200;">PAY & JOIN GAME</h2><img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR"><br><br>
 
-<section class="section">
-<p>हमारे सभी सट्टा खेलने वाले भाई परेशान थे लोगो को पैसा देदे कर इस लिए अब मुंबई से सीधा गेम मिलेगा आप सभी को अब किसी फालतू आदमी को पैसा ना दे हमारी वेबसाइट से गेम ले official website</p>
+<a class="paybtn"
+href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR">
+DIRECT PAY
+</a>
 
-<div class="box">
-<h2>GAMES</h2>
-<p>SINGLE OPEN • SINGLE JODI • SINGLE PANNL</p>
-<h3 style="color:#ffb200;">GAMES NAME</h3>
-<p>SRIDEVI • TIME BAZAR • MILAN DAY • RAJDHANI • KALYAN • SRIDEVI NIGHT • MILAN NIGHT • RAJDHANI NIGHT • KALYAN NIGHT • MAIN BAZAR</p>
-<h3 style="color:#ffb200;">ADVANCE ONLY ₹2999</h3>
-<a class="paybtn" href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR">PAY NOW</a>
-</div>
-</section>
-
-<section class="section proofs">
-<h2 style="color:#ffb200;">WINNING PROOFS</h2>
-<img src="https://via.placeholder.com/200x300">
-<img src="https://via.placeholder.com/200x300">
-<img src="https://via.placeholder.com/200x300">
-</section>
-
-<section class="section reviews">
-<h2 style="color:#ffb200;">CUSTOMER REVIEWS</h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;max-width:1200px;margin:auto;">
-<!-- Sample 40 reviews -->
-<div><b>Rahul Sharma</b><br><span style="color:#ffd700;">★★★★★</span><p>Achha game tha, full paisa mile.</p></div>
-<div><b>Amit Patel</b><br><span style="color:#ffd700;">★★★★★</span><p>Pura loss cover ho gaya aaj to.</p></div>
-<div><b>Sunita Verma</b><br><span style="color:#ffd700;">★★★★★</span><p>Trustworthy website, Mumbai head office ka game.</p></div>
-<div><b>Rajesh Kumar</b><br><span style="color:#ffd700;">★★★★★</span><p>Payment easy tha, game turant mila.</p></div>
-<div><b>Kavita Joshi</b><br><span style="color:#ffd700;">★★★★★</span><p>Advance payment safe tha, full satisfaction.</p></div>
-<div><b>Vikram Singh</b><br><span style="color:#ffd700;">★★★★★</span><p>Game accurate tha, result 30 min pehle update.</p></div>
-<div><b>Rina Mehta</b><br><span style="color:#ffd700;">★★★★★</span><p>Direct from Mumbai head office, trusted website.</p></div>
-<div><b>Deepak Chauhan</b><br><span style="color:#ffd700;">★★★★★</span><p>Customer service 24/7, game mila without hassle.</p></div>
-<div><b>Priya Sharma</b><br><span style="color:#ffd700;">★★★★★</span><p>Fast payment and reliable results.</p></div>
-<div><b>Manoj Yadav</b><br><span style="color:#ffd700;">★★★★★</span><p>Game result accurate, satisfied!</p></div>
-<!-- Repeat to fill 30-40 reviews -->
-</div>
-</section>
-
-<section class="section">
-<h2 style="color:#ffb200;">PAY & JOIN GAME</h2>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR">
 <br><br>
-<a href="upi://pay?pa=8839100416@naviaxis&pn=MatkaFastResult&am=2999&cu=INR" class="paybtn">DIRECT PAY</a>
-<br><br>
-<h3 style="color:#ffb200;">Upload Payment Screenshot</h3>
-<input type="file">
-<br><br>
-<a href="https://wa.me/918839100416" class="paybtn">SEND SCREENSHOT</a>
-</section>
 
-<section class="section faq">
-<h2 style="color:#ffb200;">FAQ</h2>
-<div>
-<b>Game kaise milega?</b>
-<p>Payment karne ke baad WhatsApp par screenshot bheje game turant WhatsApp par mil jayega.</p>
-</div>
-</section>
+<h3>Upload Payment Screenshot</h3>
+<input type="file"><br><br>
 
-<footer>
-MatkaFastResult • Official Matka Result Website • © 2026 All Rights Reserved
-</footer>
+<a class="paybtn"
+href="https://wa.me/918839100416">
+SEND SCREENSHOT
+</a>
 
-<a class="whatsapp" href="https://wa.me/918839100416">24/7 Support</a>
+</section><section class="section"><h2 style="color:#ffb200;">FAQ</h2><p>
+Game kaise milega ?
+</p><p>
+Payment karne ke baad WhatsApp par screenshot bheje  
+game turant WhatsApp par mil jayega
+</p></section><a class="whatsapp" href="https://wa.me/918839100416">
+24/7 SUPPORT
+</a><!-- LOGIN MODAL --><div id="loginModal" class="modal"><div class="modal-content"><h2>User Login</h2><input id="loginNumber" placeholder="Mobile Number"><input id="loginPassword" type="password" placeholder="Password"><button onclick="login()">Login</button>
 
-<!-- LOGIN / SIGNUP MODAL -->
-<div id="loginModal" class="modal">
-  <div class="modal-content">
-    <h2>User Login</h2>
-    <input type="text" id="loginNumber" placeholder="Mobile Number">
-    <input type="password" id="loginPassword" placeholder="Password">
-    <button class="paybtn" onclick="login()">Login</button>
-    <hr>
-    <h3>New User Signup</h3>
-    <input type="text" id="signupName" placeholder="Full Name">
-    <input type="text" id="signupNumber" placeholder="Mobile Number">
-    <input type="text" id="signupOTP" placeholder="OTP">
-    <input type="password" id="signupPassword" placeholder="Create Password">
-    <button class="paybtn" onclick="signup()">Signup</button>
-    <button onclick="closeLogin()" style="margin-top:10px;">Close</button>
-  </div>
-</div>
+<hr><h3>Signup</h3><input id="signupName" placeholder="Full Name"><input id="signupNumber" placeholder="Mobile Number"><input id="signupOTP" placeholder="OTP"><input id="signupPassword" type="password" placeholder="Password"><button onclick="signup()">Signup</button>
 
-<!-- SUCCESS MODAL -->
-<div id="successModal" class="modal">
-  <div class="modal-content">
-    <h2 style="color:#ffb200;">Welcome to MatkaFastResult!</h2>
-    <p>Your Customer ID: <span id="cidSuccess"></span></p>
-    <button class="paybtn" onclick="closeSuccess()">OK</button>
-  </div>
-</div>
+<button onclick="closeLogin()">Close</button>
 
-<p>Your Customer ID: <span id="cid">Not Logged In</span></p>
+</div></div><script>
 
-<script>
-// LIVE RESULTS
-const matkaResults = [
-{market:"SRIDEVI", open:130, jodi:42, close:246},
-{market:"TIME BAZAR", open:677, jodi:0, close:550},
-{market:"MILAN DAY", open:559, jodi:96, close:899},
-{market:"RAJDHANI DAY", open:690, jodi:53, close:120},
-{market:"KALYAN", open:150, jodi:63, close:670},
-{market:"SRIDEVI NIGHT", open:348, jodi:58, close:468},
-{market:"MILAN NIGHT", open:225, jodi:95, close:258},
-{market:"RAJDHANI NIGHT", open:466, jodi:65, close:249},
-{market:"KALYAN NIGHT", open:158, jodi:44, close:770},
-{market:"MAIN BAZAR", open:230, jodi:59, close:360}
-];
-function updateResultTable(){
-const table=document.getElementById("resultTable");
-table.innerHTML=`<tr><th>MARKET</th><th>OPEN</th><th>JODI</th><th>CLOSE</th></tr>`;
-matkaResults.forEach(item=>{
-const row=table.insertRow();
-row.insertCell(0).innerText=item.market;
-row.insertCell(1).innerText=item.open;
-row.insertCell(2).innerText=item.jodi;
-row.insertCell(3).innerText=item.close;
-});
+const results=[
+["SRIDEVI",130,42,246],
+["TIME BAZAR",677,0,550],
+["MILAN DAY",559,96,899],
+["RAJDHANI DAY",690,53,120],
+["KALYAN",150,63,670],
+["MAIN BAZAR",230,59,360]
+]
+
+const table=document.getElementById("resultTable")
+
+results.forEach(r=>{
+let row=table.insertRow()
+row.insertCell(0).innerText=r[0]
+row.insertCell(1).innerText=r[1]
+row.insertCell(2).innerText=r[2]
+row.insertCell(3).innerText=r[3]
+})
+
+function generateCustomerID(){
+return "CID"+Math.floor(Math.random()*1000000)
 }
-updateResultTable();
-setInterval(updateResultTable,1800000);
 
-// LOGIN / SIGNUP
-function generateCustomerID(){return "CID"+Math.floor(Math.random()*1000000);}
 function login(){
-  let number=document.getElementById("loginNumber").value;
-  let password=document.getElementById("loginPassword").value;
-  if(number && password){
-    let id=generateCustomerID();
-    localStorage.setItem("customerID",id);
-    document.getElementById("cid").innerText=id;
-    document.getElementById("cidSuccess").innerText=id;
-    document.getElementById("loginBtn").style.display="none";
-    document.getElementById("welcomeMsg").innerText="Welcome, "+id;
-    closeLogin();
-    document.getElementById("successModal").style.display="block";
-  } else alert("Enter Mobile Number and Password");
+
+let id=generateCustomerID()
+
+localStorage.setItem("cid",id)
+
+document.getElementById("loginBtn").style.display="none"
+
+document.getElementById("welcomeMsg").innerText="Welcome "+id
+
+closeLogin()
+
 }
+
 function signup(){
-  let name=document.getElementById("signupName").value;
-  let number=document.getElementById("signupNumber").value;
-  let otp=document.getElementById("signupOTP").value;
-  let password=document.getElementById("signupPassword").value;
-  if(name && number && otp && password){
-    let id=generateCustomerID();
-    localStorage.setItem("customerID",id);
-    localStorage.setItem("customerName",name);
-    document.getElementById("cid").innerText=id;
-    document.getElementById("cidSuccess").innerText=id;
-    document.getElementById("loginBtn").style.display="none";
-    document.getElementById("welcomeMsg").innerText="Welcome, "+name+" ("+id+")";
-    closeLogin();
-    document.getElementById("successModal").style.display="block";
-  } else alert("Fill all fields including OTP");
-}
-function openLogin(){document.getElementById("loginModal").style.display="block";}
-function closeLogin(){document.getElementById("loginModal").style.display="none";}
-function closeSuccess(){document.getElementById("successModal").style.display="none";}
 
-// Maintain login state
-window.onload=function(){
-  let saved=localStorage.getItem("customerID");
-  let name=localStorage.getItem("customerName");
-  if(saved){
-    document.getElementById("cid").innerText=saved;
-    document.getElementById("loginBtn").style.display="none";
-    document.getElementById("welcomeMsg").innerText="Welcome, "+(name?name:saved);
-  }
-}
-</script>
+let id=generateCustomerID()
 
-</body>
+localStorage.setItem("cid",id)
+
+document.getElementById("loginBtn").style.display="none"
+
+document.getElementById("welcomeMsg").innerText="Welcome "+id
+
+closeLogin()
+
+}
+
+function openLogin(){
+document.getElementById("loginModal").style.display="block"
+}
+
+function closeLogin(){
+document.getElementById("loginModal").style.display="none"
+}
+
+const slider=document.getElementById("reviewsSlider")
+
+let scroll=0
+
+setInterval(()=>{
+
+scroll++
+
+if(scroll>slider.scrollWidth-slider.clientWidth){
+scroll=0
+}
+
+slider.scrollTo({left:scroll})
+
+},40)
+
+</script></body>
 </html>
