@@ -101,13 +101,17 @@ margin-top:20px;
 
 #paymentPopup{
 position:fixed;
-bottom:20px;
-left:20px;
+top:-100px;
+left:50%;
+transform:translateX(-50%);
 background:#111;
+color:white;
 padding:12px 18px;
 border-radius:8px;
 box-shadow:0 0 10px rgba(0,0,0,0.5);
 font-size:14px;
+transition:all 0.6s;
+z-index:9999;
 }
 
 </style></head><body><header>
@@ -167,7 +171,11 @@ MUMBAI HEAD OFFICE
 
 <a class="paybtn" href="https://wa.me/918839100416">WhatsApp</a>
 
-</div><div class="section"><h2>PAY & JOIN GAME</h2><img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@paytm&pn=MatkaFastResult&am=2999&cu=INR"></div><footer>MatkaFastResult - Official Matka Result Website
+</div><div class="section"><h2>PAY & JOIN GAME</h2><img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@paytm&pn=MatkaFastResult&am=2999&cu=INR"><br><br>
+
+<a href="upi://pay?pa=8839100416@paytm&pn=MatkaFastResult&am=2999&cu=INR" class="paybtn">
+PAY NOW ₹2999
+</a></div><footer>MatkaFastResult - Official Matka Result Website
 
 <br>Contact: +91 8839100416
 
@@ -188,21 +196,35 @@ users+=Math.floor(Math.random()*3);
 document.getElementById("live").innerText=users;
 },5000);
 
-var names=["Rahul Sharma","Amit Patel","Vikram Singh","Deepak Kumar","Ankit Jain","Rohit Mehta","Ramesh Yadav","Sanjay Patel"];
+var names=[
+"Rahul Sharma","Amit Patel","Vikram Singh","Deepak Kumar",
+"Ankit Jain","Rohit Mehta","Ramesh Yadav","Sanjay Patel"
+];
 
-var cities=["Delhi","Mumbai","Surat","Jaipur","Indore","Lucknow","Pune"];
+var cities=[
+"Delhi","Mumbai","Surat","Jaipur","Indore","Lucknow","Pune"
+];
 
 function showPayment(){
 
 var name=names[Math.floor(Math.random()*names.length)];
 var city=cities[Math.floor(Math.random()*cities.length)];
 
-document.getElementById("paymentPopup").innerHTML="💰 "+name+" from "+city+" paid ₹2999 just now";
+var popup=document.getElementById("paymentPopup");
+
+popup.innerHTML="💰 "+name+" from "+city+" paid ₹2999 just now";
+
+popup.style.top="20px";
+
+setTimeout(function(){
+popup.style.top="-100px";
+},5000);
 
 }
 
 showPayment();
-setInterval(showPayment,600000);
+
+setInterval(showPayment,30000);
 
 </script></body>
 </html>
