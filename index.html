@@ -1,120 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Matka Fast Result</title>
+<title>MatkaFastResult</title>
 
 <style>
 
 body{
-margin:0;
 font-family:Arial;
-background:#0f0f0f;
+margin:0;
+background:#111;
 color:white;
 text-align:center;
 }
 
 header{
-background:#111;
+background:black;
 padding:15px;
-color:#ffcc00;
 font-size:22px;
 font-weight:bold;
 }
 
-.marquee{
-background:#ffcc00;
-color:black;
-padding:8px;
-font-weight:bold;
-}
-
-.section{
-padding:30px 15px;
-}
-
 table{
-width:90%;
+width:95%;
 margin:auto;
 border-collapse:collapse;
-background:#151515;
-}
-
-th,td{
-padding:10px;
-border:1px solid #333;
+background:white;
+color:black;
 }
 
 th{
-background:#ffcc00;
-color:black;
-}
-
-.paybtn{
-background:#ffcc00;
-color:black;
-padding:12px 20px;
-display:inline-block;
-margin-top:10px;
-border-radius:5px;
-text-decoration:none;
-font-weight:bold;
-}
-
-.review-slider{
-display:flex;
-overflow-x:auto;
-gap:15px;
+background:red;
+color:white;
 padding:10px;
 }
 
-.review-box{
-background:#151515;
-padding:15px;
+td{
+padding:10px;
+border:1px solid #ccc;
+}
+
+.section{
+margin-top:30px;
+}
+
+.proof img{
+width:90%;
+max-width:350px;
+margin:10px;
 border-radius:8px;
-min-width:220px;
 }
 
-.vip{
-background:#0b3d59;
-border:3px solid yellow;
-padding:20px;
-margin:25px;
-border-radius:10px;
+.review{
+background:#222;
+padding:10px;
+margin:8px;
+border-radius:5px;
 }
 
-.whatsapp{
+button{
+padding:12px;
+font-size:16px;
+margin:5px;
+}
+
+.admin{
+display:none;
 position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-padding:14px 20px;
-border-radius:50px;
-color:white;
-text-decoration:none;
-font-weight:bold;
-}
-
-footer{
-background:#111;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
 padding:20px;
-margin-top:20px;
+overflow:auto;
 }
 
-#paymentPopup{
-position:fixed;
-top:-100px;
-left:50%;
-transform:translateX(-50%);
-background:#111;
-color:white;
-padding:12px 18px;
-border-radius:8px;
-box-shadow:0 0 10px rgba(0,0,0,0.5);
-font-size:14px;
-transition:all 0.6s;
-z-index:9999;
+input{
+padding:10px;
+width:300px;
+max-width:90%;
+margin:5px;
+}
+
+.qr img{
+width:200px;
 }
 
 </style>
@@ -124,18 +95,20 @@ z-index:9999;
 <body>
 
 <header>
-MUMBAI HEAD OFFICE
-<div>👥 Live Users Online: <span id="live">84</span></div>
+
+MUMBAI HEAD OFFICE  
+
+<br>
+
+📞 8839100416  
+
+<br>
+
+फ्रॉड लोगो से बचें
+
 </header>
 
-<div class="marquee">
-🔥 SRIDEVI 180 | TIME BAZAR 258 | MILAN DAY 167 | RAJDHANI DAY 149 | KALYAN 129 🔥
-</div>
-
 <div class="section">
-
-<h1>SATTA MATKA COMPANY</h1>
-<h2>DIRECT FROM MUMBAI HEAD OFFICE</h2>
 
 <h2>🔥 LIVE MATKA RESULT 🔥</h2>
 
@@ -187,183 +160,184 @@ MUMBAI HEAD OFFICE
 
 </div>
 
-<div class="section">
 
-<h2>GAMES</h2>
-
-SRIDEVI • TIME BAZAR • MILAN DAY • RAJDHANI • KALYAN • SRIDEVI NIGHT • MILAN NIGHT • RAJDHANI NIGHT • KALYAN NIGHT • MAIN BAZAR
-
-<h3>ADVANCE ONLY ₹2999</h3>
-
-<button onclick="openPay()" class="paybtn">DIRECT PAY ₹2999</button>
-
-<div id="payBox" style="display:none">
-
-<a href="upi://pay?pa=8839100416@paytm&pn=MatkaFastResult&am=2999&cu=INR" class="paybtn">Pay with PhonePe</a>
-
-<a href="upi://pay?pa=8839100416@paytm&pn=MatkaFastResult&am=2999&cu=INR" class="paybtn">Pay with Paytm</a>
-
-<a href="upi://pay?pa=8839100416@paytm&pn=MatkaFastResult&am=2999&cu=INR" class="paybtn">Pay with Google Pay</a>
-
-</div>
-
-</div>
-
-<div class="section">
+<div class="section proof">
 
 <h2>PASSING</h2>
 
-<!-- Today's proof added -->
-<img src="https://i.postimg.cc/nrqgf4pm/Picsart-26-03-10-19-50-54-775.jpg" width="200">
-
-<p>Result Proof - 11 March 2026</p>
-
-<!-- You can add older proofs here if needed -->
+<div id="proofGallery"></div>
 
 </div>
+
+
+<div class="section qr">
+
+<h3>PAY ₹2999</h3>
+
+<img src="https://i.postimg.cc/nrqgf4pm/Picsart-26-03-10-19-50-54-775.jpg">
+
+<br><br>
+
+<a href="https://wa.me/918839100416">
+
+<button>SEND SCREENSHOT</button>
+
+</a>
+
+</div>
+
 
 <div class="section">
 
 <h2>CUSTOMER REVIEWS</h2>
 
-<div class="review-slider">
-
-<div class="review-box">Rahul Sharma ★★★★★ Game accurate tha</div>
-<div class="review-box">Amit Patel ★★★★★ Paisa recover ho gaya</div>
-<div class="review-box">Vikram Singh ★★★★★ Best matka website</div>
-<div class="review-box">Deepak Kumar ★★★★★ Result fast milta hai</div>
-<div class="review-box">Ankit Jain ★★★★★ Trusted website</div>
-<div class="review-box">Sonia Gupta ★★★★★ Highly recommended</div>
-
-<!-- Add more to make 40-50 reviews if needed -->
+<div class="review">Rahul Sharma ⭐⭐⭐⭐⭐ Game accurate tha</div>
+<div class="review">Amit Patel ⭐⭐⭐⭐⭐ Paisa recover ho gaya</div>
+<div class="review">Vikram Singh ⭐⭐⭐⭐⭐ Best matka website</div>
+<div class="review">Deepak Kumar ⭐⭐⭐⭐⭐ Result fast milta hai</div>
+<div class="review">Rohit Verma ⭐⭐⭐⭐⭐ Trustable</div>
+<div class="review">Sanjay Singh ⭐⭐⭐⭐⭐ Good result</div>
+<div class="review">Manoj Kumar ⭐⭐⭐⭐⭐ Paisa mila</div>
+<div class="review">Vikas Patel ⭐⭐⭐⭐⭐ Best service</div>
 
 </div>
 
-</div>
 
-<div class="vip">
+<!-- Hidden Admin Button -->
 
-<h2 style="background:black;color:yellow;padding:10px;">
-!!! KALYAN DHAMAKA !!!
-</h2>
+<div onclick="openAdmin()" style="position:fixed;bottom:10px;right:10px;width:30px;height:30px;"></div>
 
-<p style="background:yellow;color:blue;padding:6px;font-weight:bold;">
-विस्वास से भरा हुआ साइट है
-</p>
 
-<p style="background:yellow;color:blue;padding:6px;font-weight:bold;">
-कल्याण बाजार बम्पर धमाका
-</p>
+<!-- Admin Panel -->
 
-<p style="background:yellow;color:blue;padding:6px;font-weight:bold;">
-अचूक जोड़ी पर कमाओ लाखो
-</p>
+<div id="adminPanel" class="admin">
 
-<p style="background:yellow;color:blue;padding:6px;font-weight:bold;">
-100% फिक्स 1 जोड़ी 1 पत्ती
-</p>
+<h2>ADMIN PANEL</h2>
 
-<p style="background:yellow;color:blue;padding:6px;font-weight:bold;">
-सिर्फ एक दिन में आपका पूरा लॉस कवर होगा
-</p>
-
-<p style="background:yellow;color:red;padding:6px;font-weight:bold;">
-मनी बैक गारंटी
-</p>
-
-<h2 style="background:black;color:yellow;padding:10px;">
-(2) * (21) * (129)
-</h2>
-
-<h3 style="background:orange;color:red;padding:8px;">
-कॉल: प्रोफ. Rohit Bhai
-</h3>
-
-<h2 style="background:yellow;color:red;padding:10px;">
-📞 8839100416
-</h2>
-
-<p style="color:red;font-weight:bold;">
-⚠️ फ्रॉड लोगो से बचें
-</p>
-
-<a class="paybtn" href="tel:8839100416">CALL NOW</a>
-
-<br><br>
-
-<a class="paybtn" href="https://wa.me/918839100416">WhatsApp</a>
-
-</div>
-
-<div class="section">
-
-<h2>PAY & JOIN GAME</h2>
-
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=8839100416@paytm&pn=MatkaFastResult&am=2999&cu=INR">
-
-<br><br>
-
-<a href="upi://pay?pa=8839100416@paytm&pn=MatkaFastResult&am=2999&cu=INR" class="paybtn">
-PAY NOW ₹2999
-</a>
-
-</div>
-
-<footer>
-
-MatkaFastResult - Official Matka Result Website
+<input type="password" id="pass" placeholder="Password">
 
 <br>
 
-Contact: +91 8839100416
+<button onclick="login()">LOGIN</button>
+
+<div id="controls" style="display:none;">
+
+<h3>Add Proof</h3>
+
+<input id="proofLink" placeholder="Image Link">
 
 <br>
 
-24/7 WhatsApp Support
+<button onclick="addProof()">ADD PROOF</button>
 
-</footer>
+</div>
 
-<a class="whatsapp" href="https://wa.me/918839100416">WhatsApp</a>
+<br>
 
-<div id="paymentPopup"></div>
+<button onclick="closeAdmin()">CLOSE</button>
+
+</div>
+
 
 <script>
 
-function openPay(){
-document.getElementById("payBox").style.display="block";
-}
+let proofs = JSON.parse(localStorage.getItem("proofs")) || []
 
-let users=84;
+function renderProofs(){
 
-setInterval(function(){
-users+=Math.floor(Math.random()*3);
-document.getElementById("live").innerText=users;
-},5000);
+let gallery=document.getElementById("proofGallery")
 
-var names=["Rahul Sharma","Amit Patel","Vikram Singh","Deepak Kumar","Ankit Jain","Sonia Gupta","Rohit Mehta","Ramesh Yadav","Sanjay Patel"];
+gallery.innerHTML=""
 
-var cities=["Delhi","Mumbai","Surat","Jaipur","Indore","Lucknow","Pune"];
+proofs.forEach(p=>{
 
-function showPayment(){
+gallery.innerHTML+=`
 
-var name=names[Math.floor(Math.random()*names.length)];
-var city=cities[Math.floor(Math.random()*cities.length)];
+<div>
 
-var popup=document.getElementById("paymentPopup");
+<p>${p.date}</p>
 
-popup.innerHTML="💰 "+name+" from "+city+" paid ₹2999 just now";
+<img src="${p.img}">
 
-popup.style.top="20px";
+</div>
 
-setTimeout(function(){
-popup.style.top="-100px";
-},5000);
+`
+
+})
 
 }
 
-showPayment();
+renderProofs()
 
-setInterval(showPayment,30000);
+function formatDate(){
+
+let d=new Date()
+
+let day=String(d.getDate()).padStart(2,'0')
+
+let month=String(d.getMonth()+1).padStart(2,'0')
+
+let year=d.getFullYear()
+
+return day+"-"+month+"-"+year
+
+}
+
+function addProof(){
+
+let link=document.getElementById("proofLink").value
+
+if(!link) return
+
+proofs.unshift({
+
+img:link,
+
+date:formatDate()
+
+})
+
+if(proofs.length>15){
+
+proofs.pop()
+
+}
+
+localStorage.setItem("proofs",JSON.stringify(proofs))
+
+renderProofs()
+
+alert("Proof Added")
+
+}
+
+function openAdmin(){
+
+document.getElementById("adminPanel").style.display="block"
+
+}
+
+function closeAdmin(){
+
+document.getElementById("adminPanel").style.display="none"
+
+}
+
+function login(){
+
+let p=document.getElementById("pass").value
+
+if(p=="12345"){
+
+document.getElementById("controls").style.display="block"
+
+}else{
+
+alert("Wrong Password")
+
+}
+
+}
 
 </script>
 
